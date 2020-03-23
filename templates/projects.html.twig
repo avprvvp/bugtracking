@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+ {% block title %}Projects{% endblock %}
+
+{% block body %}
+<h1 align="center">Projects</h1>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr align="center">
+      <th scope="col">Project ID</th>
+      <th scope="col">Project Name</th>
+      <th scope="col">Creator</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for project in projects %}
+      <tr align="center">
+        <th scope="row">{{ project.id }}</th>
+        <td>{{ project.projectName }}</td>
+        <td>----</td>
+        <td>
+        <a class="btn btn-outline-secondary btn-sm" href="/project/edit/{id} {{ project.id }}" role="button">Edit</a>&ensp;
+        <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="mx-auto" style="width: 200px;">
+<div class="my-3">
+  <a class="btn btn-outline-secondary btn-lg" href="/projects/create" role="button">Create Project</a>
+</div>
+</div>
+
+
+{% endblock %}
