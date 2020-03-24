@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Projects;
+use App\Entity\Project;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,7 +16,7 @@ class ProjectsController extends AbstractController
     public function ShowProjects()
     {
         $projects = $this->getDoctrine()
-            ->getRepository(Projects::class)
+            ->getRepository(Project::class)
             ->findAll();
 
         return $this->render('projects.html.twig', [

@@ -114,7 +114,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
             echo "</td>
         <td>----</td>
         <td>
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{id} ";
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/";
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 23), "html", null, true);
             echo "\" role=\"button\">Edit</a>&ensp;
@@ -183,7 +183,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         <td>{{ project.projectName }}</td>
         <td>----</td>
         <td>
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{id} {{ project.id }}\" role=\"button\">Edit</a>&ensp;
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"#\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}

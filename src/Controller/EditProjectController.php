@@ -4,7 +4,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Projects;
+use App\Entity\Project;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +15,10 @@ class EditProjectController extends AbstractController
      * @Route("/project/edit/{id}", name="edit_project")
      */
 
-        public function update($id)
+        public function update(Request $request, $id)
         {
             $entityManager = $this->getDoctrine()->getManager();
-            $project = $entityManager->getRepository(Projects::class)->find($id);
+            $project = $entityManager->getRepository(Project::class)->find($id);
 
             if (!$project) {
                 throw $this->createNotFoundException(
@@ -39,7 +39,7 @@ class EditProjectController extends AbstractController
                 $entityManager->persist($project);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('show_projects', ['id' =>$project->getId()]);
+                return $this->redirectToRoute('show_projects');
             }
                 
             return $this->render('create_project.html.twig', [

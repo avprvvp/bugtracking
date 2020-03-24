@@ -4,7 +4,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Projects;
+use App\Entity\Project;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,7 +18,7 @@ class NewProjectController extends AbstractController
 
     public function new(Request $request)
     {
-        $project = new Projects();
+        $project = new Project();
 
         $form = $this->createFormBuilder($project)
             ->add('project_name', TextType::class)
@@ -33,7 +33,7 @@ class NewProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_projects', ['id' =>$project->getId()]);
+            return $this->redirectToRoute('show_projects');
         }
 
         return $this->render('create_project.html.twig', [
