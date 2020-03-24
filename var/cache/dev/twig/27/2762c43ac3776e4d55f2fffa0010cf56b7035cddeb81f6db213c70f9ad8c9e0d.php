@@ -118,7 +118,10 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 23), "html", null, true);
             echo "\" role=\"button\">Edit</a>&ensp;
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"#\" role=\"button\">Delete</a></td>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/";
+            // line 24
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 24), "html", null, true);
+            echo "\" role=\"button\">Delete</a></td>
       </tr>
     ";
         }
@@ -156,7 +159,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
 
     public function getDebugInfo()
     {
-        return array (  129 => 27,  119 => 23,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  132 => 27,  123 => 24,  119 => 23,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -184,7 +187,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         <td>----</td>
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"#\" role=\"button\">Delete</a></td>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/{{ project.id }}\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>

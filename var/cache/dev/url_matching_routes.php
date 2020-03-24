@@ -13,9 +13,11 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/projects/create' => [[['_route' => 'create_project', '_controller' => 'App\\Controller\\NewProjectController::new'], null, null, null, false, false, null]],
         '/projects' => [[['_route' => 'show_projects', '_controller' => 'App\\Controller\\ProjectsController::ShowProjects'], null, null, null, false, false, null]],
+        '/projects/create' => [[['_route' => 'create_project', '_controller' => 'App\\Controller\\ProjectsController::new'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'registration', '_controller' => 'App\\Controller\\RegistrationController::new'], null, null, null, false, false, null]],
+        '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -34,7 +36,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/project/edit/([^/]++)(*:191)'
+                .'|/project/(?'
+                    .'|edit/([^/]++)(*:194)'
+                    .'|delete/([^/]++)(*:217)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -45,8 +50,9 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        191 => [
-            [['_route' => 'edit_project', '_controller' => 'App\\Controller\\EditProjectController::update'], ['id'], null, null, false, true, null],
+        194 => [[['_route' => 'edit_project', '_controller' => 'App\\Controller\\ProjectsController::update'], ['id'], null, null, false, true, null]],
+        217 => [
+            [['_route' => 'delete_project', '_controller' => 'App\\Controller\\ProjectsController::delete'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

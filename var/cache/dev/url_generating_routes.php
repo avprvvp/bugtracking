@@ -15,8 +15,11 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
-    'edit_project' => [['id'], ['_controller' => 'App\\Controller\\EditProjectController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/edit']], [], []],
-    'create_project' => [[], ['_controller' => 'App\\Controller\\NewProjectController::new'], [], [['text', '/projects/create']], [], []],
     'show_projects' => [[], ['_controller' => 'App\\Controller\\ProjectsController::ShowProjects'], [], [['text', '/projects']], [], []],
+    'create_project' => [[], ['_controller' => 'App\\Controller\\ProjectsController::new'], [], [['text', '/projects/create']], [], []],
+    'edit_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/edit']], [], []],
+    'delete_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/delete']], [], []],
     'registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::new'], [], [['text', '/registration']], [], []],
+    'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
 ];
