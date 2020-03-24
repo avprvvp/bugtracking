@@ -4076,16 +4076,9 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id=".security.request_matcher.5dJADCx"/>
+        <argument type="service" id=".security.request_matcher.eKXDm4f"/>
         <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.Pn7yvdV"/>
-        <argument type="collection">
-          <argument>ROLE_USER</argument>
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -4496,11 +4489,8 @@
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/admin</argument>
-    </service>
-    <service id=".security.request_matcher.Pn7yvdV" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/profile</argument>
+    <service id=".security.request_matcher.eKXDm4f" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/login$</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
