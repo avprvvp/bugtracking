@@ -108,10 +108,12 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
             // line 19
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 19), "html", null, true);
             echo "</th>
-        <td>";
+        <td><a href=\"/project/";
             // line 20
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 20), "html", null, true);
+            echo "\">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "projectName", [], "any", false, false, false, 20), "html", null, true);
-            echo "</td>
+            echo "</a></td>
         <td>----</td>
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/";
@@ -159,7 +161,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
 
     public function getDebugInfo()
     {
-        return array (  132 => 27,  123 => 24,  119 => 23,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  134 => 27,  125 => 24,  121 => 23,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -183,7 +185,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
     {% for project in projects %}
       <tr align=\"center\">
         <th scope=\"row\">{{ project.id }}</th>
-        <td>{{ project.projectName }}</td>
+        <td><a href=\"/project/{{ project.id }}\">{{ project.projectName }}</a></td>
         <td>----</td>
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;

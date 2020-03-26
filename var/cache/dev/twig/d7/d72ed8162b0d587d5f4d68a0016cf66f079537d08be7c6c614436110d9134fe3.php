@@ -117,7 +117,7 @@ class __TwigTemplate_379914617c9cfb08b51761f196215be38012be070c2ab33869691301673
         // line 19
         echo "
     <h1 class=\"h3 mb-3 font-weight-normal\"></h1>
-    <label for=\"inputName\">Name</label>
+    <label for=\"inputName\">Login</label>
     <input type=\"text\" value=\"";
         // line 22
         echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 22, $this->source); })()), "html", null, true);
@@ -192,7 +192,7 @@ class __TwigTemplate_379914617c9cfb08b51761f196215be38012be070c2ab33869691301673
     {% endif %}
 
     <h1 class=\"h3 mb-3 font-weight-normal\"></h1>
-    <label for=\"inputName\">Name</label>
+    <label for=\"inputName\">Login</label>
     <input type=\"text\" value=\"{{ last_username }}\" name=\"name\" id=\"inputName\" class=\"form-control\" required autofocus>
     <label for=\"inputPassword\">Password</label>
     <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" required>

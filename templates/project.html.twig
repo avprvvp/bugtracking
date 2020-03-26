@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+ {% block title %}Project{% endblock %}
+
+{% block body %}
+<h1 align="center">Tickets</h1>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr align="center">
+      <th scope="col">Ticket name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Status</th>
+      <th scope="col">Creator</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr align="center">
+        <th scope="row">-</th>
+        <td>-</td>
+        <td>----</td>
+        <td>----</td>
+        <td>
+        <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Edit</a>&ensp;
+        <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></td>
+      </tr>
+  </tbody>
+</table>
+<div class="mx-auto" style="width: 200px;">
+<div class="my-3">
+  <a class="btn btn-outline-secondary btn-lg" href="/projects/create" role="button">Create Project</a>
+</div>
+</div>
+
+
+{% endblock %}
