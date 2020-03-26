@@ -88,6 +88,7 @@ class User implements UserInterface
      */
     public function getPassword()
     {
+        return $this->password;
         // not needed for apps that do not check user passwords
     }
 

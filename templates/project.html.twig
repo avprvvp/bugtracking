@@ -15,8 +15,9 @@
     </tr>
   </thead>
   <tbody>
+    {% for ticket in project.tickets %}
       <tr align="center">
-        <th scope="row">-</th>
+        <th scope="row">{{ ticket.name }}</th>
         <td>-</td>
         <td>----</td>
         <td>----</td>
@@ -24,11 +25,12 @@
         <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Edit</a>&ensp;
         <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></td>
       </tr>
+    {% endfor %}
   </tbody>
 </table>
 <div class="mx-auto" style="width: 200px;">
 <div class="my-3">
-  <a class="btn btn-outline-secondary btn-lg" href="/projects/create" role="button">Create Project</a>
+  <a class="btn btn-outline-secondary btn-lg" href="{{ path('ticket_new', {project_id: project.id}) }}" role="button">Create Ticket</a>
 </div>
 </div>
 
