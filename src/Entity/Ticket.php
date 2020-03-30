@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+<<<<<<< HEAD
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+=======
+>>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +32,7 @@ class Ticket
      */
     private $project;
 
+<<<<<<< HEAD
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -49,6 +53,8 @@ class Ticket
         $this->comments = new ArrayCollection();
     }
 
+=======
+>>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +83,7 @@ class Ticket
 
         return $this;
     }
+<<<<<<< HEAD
 
     public function getType(): ?string
     {
@@ -132,4 +139,6 @@ class Ticket
 
         return $this;
     }
+=======
+>>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
 }

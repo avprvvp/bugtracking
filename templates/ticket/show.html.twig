@@ -3,6 +3,7 @@
 {% block title %}Ticket{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
     <h1 align="center">{{ ticket.name }}</h1>
 
     <table align="center" class="table table-bordered">
@@ -49,4 +50,26 @@
     </button>
     </form>
 
+=======
+    <h1>Ticket</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ticket.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ ticket.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ticket_index') }}">back to list</a>
+
+    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+
+    {{ include('ticket/_delete_form.html.twig') }}
+>>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
 {% endblock %}

@@ -13,8 +13,11 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('name')
+<<<<<<< HEAD
             ->add('type')
             ->add('status')
+=======
+>>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
         ;
     }
 
