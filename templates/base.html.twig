@@ -8,8 +8,11 @@
         <header>
         <div class="card">
             <h2 class="card-header">
-            <a class="btn btn-outline-secondary btn-lg" href="/login" role="button"> Log in </a>&emsp;
-            <a class="btn btn-outline-secondary btn-lg" href="/registration" role="button"> Registration </a></h2>
+            &emsp;<a class="btn btn-outline-secondary btn-lg" href="{{ path('login') }}" role="button"> LOG IN </a>&emsp;
+            <a class="btn btn-outline-secondary btn-lg" href="{{ path('registration') }}" role="button"> REGISTRATION </a>&emsp;
+            <a class="btn btn-outline-secondary btn-lg" href="{{ path('show_projects') }}" role="button"> PROJECTS </a>&emsp;
+            <a class="btn btn-outline-secondary btn-lg" href="#" role="button"> MY STUFF </a>&emsp;
+            <a class="btn btn-outline-secondary btn-lg" href="#" role="button"> EXIT </a></h2>
         </div>
         </header>
     </head>

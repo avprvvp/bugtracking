@@ -60,19 +60,31 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         echo "        <header>
         <div class=\"card\">
             <h2 class=\"card-header\">
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"/login\" role=\"button\"> Log in </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"/registration\" role=\"button\"> Registration </a></h2>
+            &emsp;<a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 11
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
+        echo "\" role=\"button\"> LOG IN </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 12
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("registration");
+        echo "\" role=\"button\"> REGISTRATION </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 13
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("show_projects");
+        echo "\" role=\"button\"> PROJECTS </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> EXIT </a></h2>
         </div>
         </header>
     </head>
     <body>
         ";
-        // line 17
+        // line 20
         $this->displayBlock('body', $context, $blocks);
-        // line 18
+        // line 21
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 19
+        // line 22
         echo "        <script src=\"https://code.jquery.com/jquery-3.4.1.slim.min.js\" integrity=\"sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n\" crossorigin=\"anonymous\"></script>
         <script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js\" integrity=\"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo\" crossorigin=\"anonymous\"></script>
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script>
@@ -124,7 +136,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
 
     }
 
-    // line 17
+    // line 20
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -142,7 +154,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
 
     }
 
-    // line 18
+    // line 21
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -165,9 +177,14 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  146 => 18,  128 => 17,  110 => 7,  91 => 6,  76 => 19,  73 => 18,  71 => 17,  60 => 8,  58 => 7,  54 => 6,  47 => 1,);
+        return array (  158 => 21,  140 => 20,  122 => 7,  103 => 6,  88 => 22,  85 => 21,  83 => 20,  73 => 13,  69 => 12,  65 => 11,  60 => 8,  58 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -182,8 +199,11 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         <header>
         <div class=\"card\">
             <h2 class=\"card-header\">
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"/login\" role=\"button\"> Log in </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"/registration\" role=\"button\"> Registration </a></h2>
+            &emsp;<a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('login') }}\" role=\"button\"> LOG IN </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('registration') }}\" role=\"button\"> REGISTRATION </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('show_projects') }}\" role=\"button\"> PROJECTS </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>&emsp;
+            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> EXIT </a></h2>
         </div>
         </header>
     </head>

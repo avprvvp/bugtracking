@@ -19,7 +19,13 @@ return [
     'create_project' => [[], ['_controller' => 'App\\Controller\\ProjectsController::new'], [], [['text', '/projects/create']], [], []],
     'edit_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/edit']], [], []],
     'delete_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/delete']], [], []],
+    'show_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project']], [], []],
     'registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::new'], [], [['text', '/registration']], [], []],
     'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
+    'ticket_new' => [[], ['_controller' => 'App\\Controller\\TicketController::new'], [], [['text', '/ticket/new']], [], []],
+    'ticket_show' => [['id'], ['_controller' => 'App\\Controller\\TicketController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
+    'ticket_edit' => [['id'], ['_controller' => 'App\\Controller\\TicketController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
+    'ticket_delete' => [['id'], ['_controller' => 'App\\Controller\\TicketController::delete'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
+    'app_ticket_new_comment' => [[], ['_controller' => 'App\\Controller\\TicketController::new_comment'], [], [['text', '/ticket']], [], []],
 ];

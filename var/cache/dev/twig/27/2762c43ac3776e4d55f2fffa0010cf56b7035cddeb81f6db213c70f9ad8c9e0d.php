@@ -87,7 +87,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         // line 5
         echo "<h1 align=\"center\">Projects</h1>
 
-<table class=\"table\">
+<table class=\"table table-bordered\">
   <thead class=\"thead-light\">
     <tr align=\"center\">
       <th scope=\"col\">Project ID</th>
@@ -172,7 +172,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
 {% block body %}
 <h1 align=\"center\">Projects</h1>
 
-<table class=\"table\">
+<table class=\"table table-bordered\">
   <thead class=\"thead-light\">
     <tr align=\"center\">
       <th scope=\"col\">Project ID</th>
@@ -201,6 +201,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
 </div>
 
 
-{% endblock %}", "projects.html.twig", "/home/user/bugtracking/templates/projects.html.twig");
+{% endblock %}
+", "projects.html.twig", "/home/user/bugtracking/templates/projects.html.twig");
     }
 }

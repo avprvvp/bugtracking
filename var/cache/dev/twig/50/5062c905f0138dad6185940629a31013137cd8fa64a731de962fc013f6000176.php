@@ -65,7 +65,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Projects";
+        echo "Project";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -85,45 +85,66 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 5
-        echo "<h1 align=center>Projects</h1>
+        echo "<h1 align=\"center\">";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 5, $this->source); })()), "projectName", [], "any", false, false, false, 5), "html", null, true);
+        echo "</h1>
 
-<table class=\"table\">
+<table class=\"table table-bordered\">
   <thead class=\"thead-light\">
-    <tr align=center>
-      <th scope=\"col\">Project ID</th>
-      <th scope=\"col\">Project Name</th>
-      <th scope=\"col\">Creator ID</th>
+    <tr align=\"center\">
+      <th scope=\"col\">ID</th>
+      <th scope=\"col\">Ticket name</th>
+      <th scope=\"col\">Assigned to</th>
+      <th scope=\"col\">Creator</th>
+      <th scope=\"col\">Action</th>
     </tr>
   </thead>
   <tbody>
     ";
-        // line 16
+        // line 18
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["projects"]) || array_key_exists("projects", $context) ? $context["projects"] : (function () { throw new RuntimeError('Variable "projects" does not exist.', 16, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["project"]) {
-            // line 17
-            echo "      <tr align=center>
-        <th scope=\"row\">";
-            // line 18
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 18), "html", null, true);
-            echo "</th>
-        <td>";
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 18, $this->source); })()), "tickets", [], "any", false, false, false, 18));
+        foreach ($context['_seq'] as $context["_key"] => $context["ticket"]) {
             // line 19
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "projectName", [], "any", false, false, false, 19), "html", null, true);
-            echo "</td>
-        <td>";
+            echo "      <tr align=\"center\">
+        <th scope=\"row\">";
             // line 20
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "creatorId", [], "any", false, false, false, 20), "html", null, true);
-            echo "</td>
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 20), "html", null, true);
+            echo "</th>
+        <th scope=\"row\"><a href=\"";
+            // line 21
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 21)]), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "name", [], "any", false, false, false, 21), "html", null, true);
+            echo "</a></th>
+        <td>----</td>
+        <td>----</td>
+        <td>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+            // line 25
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 25)]), "html", null, true);
+            echo "\" role=\"button\">Edit</a>&ensp;
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+            // line 26
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 26)]), "html", null, true);
+            echo "\" role=\"button\">Delete</a></td>
       </tr>
     ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['project'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ticket'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 29
         echo "  </tbody>
 </table>
+<div align=\"center\" class=\"my-3\">
+  <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 32
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_new", ["project_id" => twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 32, $this->source); })()), "id", [], "any", false, false, false, 32)]), "html", null, true);
+        echo "\" role=\"button\">Create Ticket</a>
+</div>
+
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -145,35 +166,47 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
 
     public function getDebugInfo()
     {
-        return array (  125 => 23,  116 => 20,  112 => 19,  108 => 18,  105 => 17,  101 => 16,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  143 => 32,  138 => 29,  129 => 26,  125 => 25,  116 => 21,  112 => 20,  109 => 19,  105 => 18,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
- {% block title %}Projects{% endblock %}
+ {% block title %}Project{% endblock %}
 
 {% block body %}
-<h1 align=center>Projects</h1>
+<h1 align=\"center\">{{ project.projectName }}</h1>
 
-<table class=\"table\">
+<table class=\"table table-bordered\">
   <thead class=\"thead-light\">
-    <tr align=center>
-      <th scope=\"col\">Project ID</th>
-      <th scope=\"col\">Project Name</th>
-      <th scope=\"col\">Creator ID</th>
+    <tr align=\"center\">
+      <th scope=\"col\">ID</th>
+      <th scope=\"col\">Ticket name</th>
+      <th scope=\"col\">Assigned to</th>
+      <th scope=\"col\">Creator</th>
+      <th scope=\"col\">Action</th>
     </tr>
   </thead>
   <tbody>
-    {% for project in projects %}
-      <tr align=center>
-        <th scope=\"row\">{{ project.id }}</th>
-        <td>{{ project.projectName }}</td>
-        <td>{{ project.creatorId }}</td>
+    {% for ticket in project.tickets %}
+      <tr align=\"center\">
+        <th scope=\"row\">{{ ticket.id }}</th>
+        <th scope=\"row\"><a href=\"{{ path('ticket_show', {'id': ticket.id}) }}\">{{ ticket.name }}</a></th>
+        <td>----</td>
+        <td>----</td>
+        <td>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id}) }}\" role=\"button\">Edit</a>&ensp;
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id}) }}\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-{% endblock %}", "project.html.twig", "/home/user/bugtracking/templates/project.html.twig");
+<div align=\"center\" class=\"my-3\">
+  <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('ticket_new', {project_id: project.id}) }}\" role=\"button\">Create Ticket</a>
+</div>
+
+
+{% endblock %}
+", "project.html.twig", "/home/user/bugtracking/templates/project.html.twig");
     }
 }

@@ -2,34 +2,34 @@
  {% block title %}Project{% endblock %}
 
 {% block body %}
-<h1 align="center">Tickets</h1>
+<h1 align="center">{{ project.projectName }}</h1>
 
-<table class="table">
+<table class="table table-bordered">
   <thead class="thead-light">
     <tr align="center">
+      <th scope="col">ID</th>
       <th scope="col">Ticket name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Status</th>
+      <th scope="col">Assigned to</th>
       <th scope="col">Creator</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
+    {% for ticket in project.tickets %}
       <tr align="center">
-        <th scope="row">-</th>
-        <td>-</td>
+        <th scope="row">{{ ticket.id }}</th>
+        <th scope="row"><a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ ticket.name }}</a></th>
         <td>----</td>
         <td>----</td>
         <td>
-        <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Edit</a>&ensp;
-        <a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></td>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id}) }}" role="button">Edit</a>&ensp;
+        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id}) }}" role="button">Delete</a></td>
       </tr>
+    {% endfor %}
   </tbody>
 </table>
-<div class="mx-auto" style="width: 200px;">
-<div class="my-3">
-  <a class="btn btn-outline-secondary btn-lg" href="/projects/create" role="button">Create Project</a>
-</div>
+<div align="center" class="my-3">
+  <a class="btn btn-outline-secondary btn-lg" href="{{ path('ticket_new', {project_id: project.id}) }}" role="button">Create Ticket</a>
 </div>
 
 
