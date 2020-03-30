@@ -2,11 +2,8 @@
 
 namespace App\Entity;
 
-<<<<<<< HEAD
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-=======
->>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,7 +29,6 @@ class Ticket
      */
     private $project;
 
-<<<<<<< HEAD
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -43,18 +39,6 @@ class Ticket
      */
     private $status;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="ticket", orphanRemoval=true)
-     */
-    private $comments;
-
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-    }
-
-=======
->>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
     public function getId(): ?int
     {
         return $this->id;
@@ -83,7 +67,6 @@ class Ticket
 
         return $this;
     }
-<<<<<<< HEAD
 
     public function getType(): ?string
     {
@@ -108,37 +91,4 @@ class Ticket
 
         return $this;
     }
-
-    /**
-     * @return Collection|Comment[]
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comment $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setTicket($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(Comment $comment): self
-    {
-        if ($this->comments->contains($comment)) {
-            $this->comments->removeElement($comment);
-            // set the owning side to null (unless already changed)
-            if ($comment->getTicket() === $this) {
-                $comment->setTicket(null);
-            }
-        }
-
-        return $this;
-    }
-=======
->>>>>>> e6ebb3acc92cbcbd50a1b811ae6b8f2a025d24fd
 }

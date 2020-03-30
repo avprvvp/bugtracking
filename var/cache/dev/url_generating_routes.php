@@ -27,5 +27,4 @@ return [
     'ticket_show' => [['id'], ['_controller' => 'App\\Controller\\TicketController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
     'ticket_edit' => [['id'], ['_controller' => 'App\\Controller\\TicketController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
     'ticket_delete' => [['id'], ['_controller' => 'App\\Controller\\TicketController::delete'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
-    'app_ticket_new_comment' => [[], ['_controller' => 'App\\Controller\\TicketController::new_comment'], [], [['text', '/ticket']], [], []],
 ];
