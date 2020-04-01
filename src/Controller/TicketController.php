@@ -65,13 +65,14 @@ class TicketController extends AbstractController
      */
     public function edit(Request $request, Ticket $ticket): Response
     {
+        $projectId = $request->query->get('project_id');
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('show_projects');
+            return $this->redirectToRoute('show_project', ['id' => $projectId]);
         }
 
         return $this->render('ticket/edit.html.twig', [
@@ -84,8 +85,9 @@ class TicketController extends AbstractController
      * @Route("/{id}/delete", name="ticket_delete")
      */
     
-    public function delete($id): Response
+    public function delete(Request $request, $id): Response
     {
+        $projectId = $request->query->get('project_id');
         $entityManager = $this->getDoctrine()->getManager();
         $ticket = $entityManager->getRepository(Ticket::class)->find($id);
 
@@ -98,44 +100,6 @@ class TicketController extends AbstractController
         $entityManager->remove($ticket);
         $entityManager->flush();
 
-        return $this->redirectToRoute('show_projects');
+        return $this->redirectToRoute('show_project', ['id' => $projectId]);
     }
-
-
-    // public function new_comment(Request $request)
-    // {
-    //     $ticketId = $request->query->get('id');
-    //     $comment = new Comment();
-    //     $$form = $this->createForm(AddNewCommentType::class, $ticket);
-    //     $form->handleRequest($request);
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $ticket = $entityManager->getRepository(Ticket::class)->find($ticketId);
-
-    //         $comment->setProject($ticket);
-
-    //         $entityManager->persist($ticket);
-    //         $entityManager->persist($comment);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('show_project', ['id' => $ticketId]);
-    //     }
-
-    //     return $this->render('ticket/show.html.twig', [
-    //         'comment' => $comment,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
-
-    // public function show_comments()
-    // {
-    //     $comments = $this->getDoctrine()
-    //         ->getRepository(Comment::class)
-    //         ->findAll();
-
-    //         return $this->render('ticket/show.html.twig', [
-    //         'comments' => $comments,
-    //     ]);
-    // }
-    
 }

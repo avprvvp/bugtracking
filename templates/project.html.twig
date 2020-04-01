@@ -22,8 +22,8 @@
         <td>----</td>
         <td>----</td>
         <td>
-        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id}) }}" role="button">Edit</a>&ensp;
-        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id}) }}" role="button">Delete</a></td>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}" role="button">Edit</a>&ensp;
+        <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}" role="button">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>

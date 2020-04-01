@@ -33,20 +33,14 @@
     <h1 align="center">
     Comments
     </h1>
-    {# {% for comment in comments %} #}
+    {% for comment in ticket.comments %}
     <div align="center">
         <p>Name: </p>
-        {# <p>Comment: {{ comment.text }}</p> #}
-        <p><a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id}) }}" role="button">Delete</a></p>
+        <p>Comment: {{ comment.text }}</p>
+        <p><a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></p>
     </div>
-    {# {% endfor %} #}
-    <form method="post">
-    <div align="center">
-    <label for="inputText">New Comment</label>
-    <input type="text" name="text">
-    <button class="btn btn-outline-secondary btn-sm" type="submit">
-        Add new comment
-    </button>
-    </form>
+    {% endfor %}
+ 
+{{ include('comment/index.html.twig') }}
 
 {% endblock %}

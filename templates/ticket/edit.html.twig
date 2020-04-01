@@ -4,11 +4,15 @@
 
 {% block body %}
 <div class="my-5">
-<div align="center" class="mx-auto" style="width: 350px;">
-    <h1>Edit Ticket</h1>
-<h2>
-    {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
-</h2>
-</div>
+    <div align="center" class="mx-auto" style="width: 200px;">
+        <div class="card border-secondary mb-3" style="width: 13rem;">
+            <div class="card-body text-secondary">
+                <h2 class="card-text">Edit ticket</h2>
+            </div>
+        </div>
+        <h2 align="justify">
+            {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
+        </h2>
+    </div>
 </div>
 {% endblock %}
