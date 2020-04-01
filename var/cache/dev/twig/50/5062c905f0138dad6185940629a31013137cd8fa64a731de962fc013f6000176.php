@@ -122,11 +122,11 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
             // line 25
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 25)]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 25), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "project", [], "any", false, false, false, 25), "id", [], "any", false, false, false, 25)]), "html", null, true);
             echo "\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
             // line 26
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 26)]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 26), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "project", [], "any", false, false, false, 26), "id", [], "any", false, false, false, 26)]), "html", null, true);
             echo "\" role=\"button\">Delete</a></td>
       </tr>
     ";
@@ -195,8 +195,8 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         <td>----</td>
         <td>----</td>
         <td>
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id}) }}\" role=\"button\">Edit</a>&ensp;
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id}) }}\" role=\"button\">Delete</a></td>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Edit</a>&ensp;
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>

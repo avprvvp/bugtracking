@@ -7,6 +7,12 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     null,
     [
         'Symfony\\Component\\Routing\\Annotation\\Route' => [
+            'path' => [
+                '/{id}/comment',
+            ],
+            'name' => [
+                'create_comment',
+            ],
             'methods' => [
                 [
                     'GET',

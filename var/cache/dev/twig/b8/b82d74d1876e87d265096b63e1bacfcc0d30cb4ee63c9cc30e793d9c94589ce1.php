@@ -86,15 +86,19 @@ class __TwigTemplate_2b1ff48afb081411b5d8156649150939adcce27bcf6779e9606eabceb89
 
         // line 6
         echo "<div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-    <h1>Edit Ticket</h1>
-<h2>
-    ";
-        // line 10
+    <div align=\"center\" class=\"mx-auto\" style=\"width: 200px;\">
+        <div class=\"card border-secondary mb-3\" style=\"width: 13rem;\">
+            <div class=\"card-body text-secondary\">
+                <h2 class=\"card-text\">Edit ticket</h2>
+            </div>
+        </div>
+        <h2 align=\"justify\">
+            ";
+        // line 14
         echo twig_include($this->env, $context, "ticket/_form.html.twig", ["button_label" => "Update"]);
         echo "
-</h2>
-</div>
+        </h2>
+    </div>
 </div>
 ";
         
@@ -117,7 +121,7 @@ class __TwigTemplate_2b1ff48afb081411b5d8156649150939adcce27bcf6779e9606eabceb89
 
     public function getDebugInfo()
     {
-        return array (  94 => 10,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -128,12 +132,16 @@ class __TwigTemplate_2b1ff48afb081411b5d8156649150939adcce27bcf6779e9606eabceb89
 
 {% block body %}
 <div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-    <h1>Edit Ticket</h1>
-<h2>
-    {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
-</h2>
-</div>
+    <div align=\"center\" class=\"mx-auto\" style=\"width: 200px;\">
+        <div class=\"card border-secondary mb-3\" style=\"width: 13rem;\">
+            <div class=\"card-body text-secondary\">
+                <h2 class=\"card-text\">Edit ticket</h2>
+            </div>
+        </div>
+        <h2 align=\"justify\">
+            {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
+        </h2>
+    </div>
 </div>
 {% endblock %}
 ", "ticket/edit.html.twig", "/home/user/bugtracking/templates/ticket/edit.html.twig");

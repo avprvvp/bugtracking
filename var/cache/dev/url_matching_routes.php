@@ -18,6 +18,7 @@ return [
         '/registration' => [[['_route' => 'registration', '_controller' => 'App\\Controller\\RegistrationController::new'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/ticket/new' => [[['_route' => 'ticket_new', '_controller' => 'App\\Controller\\TicketController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -36,21 +37,18 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/ticket/(?'
-                    .'|([^/]++)(*:188)'
-                    .'|new(*:199)'
-                    .'|([^/]++)(?'
-                        .'|(*:218)'
-                        .'|/(?'
-                            .'|edit(*:234)'
-                            .'|delete(*:248)'
-                        .')'
+                .'|/ticket/([^/]++)(?'
+                    .'|/(?'
+                        .'|comment(*:199)'
+                        .'|edit(*:211)'
+                        .'|delete(*:225)'
                     .')'
+                    .'|(*:234)'
                 .')'
                 .'|/project/(?'
-                    .'|edit/([^/]++)(*:284)'
-                    .'|delete/([^/]++)(*:307)'
-                    .'|([^/]++)(*:323)'
+                    .'|edit/([^/]++)(*:268)'
+                    .'|delete/([^/]++)(*:291)'
+                    .'|([^/]++)(*:307)'
                 .')'
             .')/?$}sDu',
     ],
@@ -62,14 +60,13 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        188 => [[['_route' => 'app_comment_show', '_controller' => 'App\\Controller\\CommentController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        199 => [[['_route' => 'ticket_new', '_controller' => 'App\\Controller\\TicketController::new'], [], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        218 => [[['_route' => 'ticket_show', '_controller' => 'App\\Controller\\TicketController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        234 => [[['_route' => 'ticket_edit', '_controller' => 'App\\Controller\\TicketController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        248 => [[['_route' => 'ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], null, null, false, false, null]],
-        284 => [[['_route' => 'edit_project', '_controller' => 'App\\Controller\\ProjectsController::update'], ['id'], null, null, false, true, null]],
-        307 => [[['_route' => 'delete_project', '_controller' => 'App\\Controller\\ProjectsController::delete'], ['id'], null, null, false, true, null]],
-        323 => [
+        199 => [[['_route' => 'create_comment', '_controller' => 'App\\Controller\\CommentController::new_comment'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        211 => [[['_route' => 'ticket_edit', '_controller' => 'App\\Controller\\TicketController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        225 => [[['_route' => 'ticket_delete', '_controller' => 'App\\Controller\\TicketController::delete'], ['id'], null, null, false, false, null]],
+        234 => [[['_route' => 'ticket_show', '_controller' => 'App\\Controller\\TicketController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        268 => [[['_route' => 'edit_project', '_controller' => 'App\\Controller\\ProjectsController::update'], ['id'], null, null, false, true, null]],
+        291 => [[['_route' => 'delete_project', '_controller' => 'App\\Controller\\ProjectsController::delete'], ['id'], null, null, false, true, null]],
+        307 => [
             [['_route' => 'show_project', '_controller' => 'App\\Controller\\ProjectsController::show'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

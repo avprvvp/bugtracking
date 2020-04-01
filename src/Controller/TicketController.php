@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use App\Entity\Project;
 use App\Form\TicketType;
-use App\Form\AddNewCommentType;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -102,4 +101,16 @@ class TicketController extends AbstractController
 
         return $this->redirectToRoute('show_project', ['id' => $projectId]);
     }
+
+    public function show_сomments()
+    {
+        $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findAll();
+
+        return $this->render('ticket/show.html.twig', [
+            'comments' => $comments,
+        ]);
+    }
+
 }

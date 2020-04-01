@@ -86,14 +86,19 @@ class __TwigTemplate_c3a1957ddc74e28e41b4ea0aec0545616f2bc8b9424995a7ecf6424210b
 
         // line 6
         echo "<div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-    <h1>Create new ticket</h1>
-<h2>
-    ";
-        // line 10
+<div align=\"center\" class=\"mx-auto\" style=\"width: 250px;\">
+
+<div class=\"card border-secondary mb-3\" style=\"width: 13rem;\">
+  <div class=\"card-body text-secondary\">
+        <h2 class=\"card-text\">New ticket</h2>
+  </div>
+</div>
+    <h3 align=\"justify\">
+";
+        // line 15
         echo twig_include($this->env, $context, "ticket/_form.html.twig");
         echo "
-</h2>
+    </h3>
 </div>
 </div>
 ";
@@ -117,7 +122,7 @@ class __TwigTemplate_c3a1957ddc74e28e41b4ea0aec0545616f2bc8b9424995a7ecf6424210b
 
     public function getDebugInfo()
     {
-        return array (  94 => 10,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  99 => 15,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -128,11 +133,16 @@ class __TwigTemplate_c3a1957ddc74e28e41b4ea0aec0545616f2bc8b9424995a7ecf6424210b
 
 {% block body %}
 <div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-    <h1>Create new ticket</h1>
-<h2>
-    {{ include('ticket/_form.html.twig') }}
-</h2>
+<div align=\"center\" class=\"mx-auto\" style=\"width: 250px;\">
+
+<div class=\"card border-secondary mb-3\" style=\"width: 13rem;\">
+  <div class=\"card-body text-secondary\">
+        <h2 class=\"card-text\">New ticket</h2>
+  </div>
+</div>
+    <h3 align=\"justify\">
+{{ include('ticket/_form.html.twig') }}
+    </h3>
 </div>
 </div>
 {% endblock %}

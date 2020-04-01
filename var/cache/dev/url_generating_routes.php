@@ -15,6 +15,7 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
+    'create_comment' => [['id'], ['_controller' => 'App\\Controller\\CommentController::new_comment'], [], [['text', '/comment'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
     'show_projects' => [[], ['_controller' => 'App\\Controller\\ProjectsController::ShowProjects'], [], [['text', '/projects']], [], []],
     'create_project' => [[], ['_controller' => 'App\\Controller\\ProjectsController::new'], [], [['text', '/projects/create']], [], []],
     'edit_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project/edit']], [], []],

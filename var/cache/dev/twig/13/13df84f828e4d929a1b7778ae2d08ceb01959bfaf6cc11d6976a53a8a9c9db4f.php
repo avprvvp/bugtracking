@@ -130,25 +130,35 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
     Comments
     </h1>
     ";
-        // line 37
-        echo "    <div align=\"center\">
+        // line 36
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 36, $this->source); })()), "comments", [], "any", false, false, false, 36));
+        foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
+            // line 37
+            echo "    <div class=\"my-5\">
+    <div align=\"center\" class=\"mx-auto\" style=\"width: 200px;\">
+    <div align=\"justify\">
         <p>Name: </p>
-        ";
-        // line 40
-        echo "        <p><a class=\"btn btn-outline-secondary btn-sm\" href=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 40, $this->source); })()), "id", [], "any", false, false, false, 40)]), "html", null, true);
-        echo "\" role=\"button\">Delete</a></p>
+        <p>Comment: ";
+            // line 41
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "text", [], "any", false, false, false, 41), "html", null, true);
+            echo "</p>
+        <p><a class=\"btn btn-outline-secondary btn-sm\" href=\"#\" role=\"button\">Delete</a></p>
+    </div>
+    </div>
     </div>
     ";
-        // line 43
-        echo "    <form method=\"post\">
-    <div align=\"center\">
-    <label for=\"inputText\">New Comment</label>
-    <input type=\"text\" name=\"text\">
-    <button class=\"btn btn-outline-secondary btn-sm\" type=\"submit\">
-        Add new comment
-    </button>
-    </form>
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['comment'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 47
+        echo "    <div align=\"center\">
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+        // line 48
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create_comment", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 48, $this->source); })()), "id", [], "any", false, false, false, 48)]), "html", null, true);
+        echo "\">Add new comment</a>
+    </div>
 
 ";
         
@@ -171,7 +181,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
 
     public function getDebugInfo()
     {
-        return array (  144 => 43,  138 => 40,  134 => 37,  124 => 29,  120 => 28,  112 => 23,  108 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  159 => 48,  156 => 47,  144 => 41,  138 => 37,  134 => 36,  124 => 29,  120 => 28,  112 => 23,  108 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -211,21 +221,20 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
     <h1 align=\"center\">
     Comments
     </h1>
-    {# {% for comment in comments %} #}
-    <div align=\"center\">
+    {% for comment in ticket.comments %}
+    <div class=\"my-5\">
+    <div align=\"center\" class=\"mx-auto\" style=\"width: 200px;\">
+    <div align=\"justify\">
         <p>Name: </p>
-        {# <p>Comment: {{ comment.text }}</p> #}
-        <p><a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id}) }}\" role=\"button\">Delete</a></p>
+        <p>Comment: {{ comment.text }}</p>
+        <p><a class=\"btn btn-outline-secondary btn-sm\" href=\"#\" role=\"button\">Delete</a></p>
     </div>
-    {# {% endfor %} #}
-    <form method=\"post\">
+    </div>
+    </div>
+    {% endfor %}
     <div align=\"center\">
-    <label for=\"inputText\">New Comment</label>
-    <input type=\"text\" name=\"text\">
-    <button class=\"btn btn-outline-secondary btn-sm\" type=\"submit\">
-        Add new comment
-    </button>
-    </form>
+        <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('create_comment', {'id': ticket.id}) }}\">Add new comment</a>
+    </div>
 
 {% endblock %}
 ", "ticket/show.html.twig", "/home/user/bugtracking/templates/ticket/show.html.twig");

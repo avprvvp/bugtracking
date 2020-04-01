@@ -19,49 +19,37 @@ use App\Entity\Comment;
 
 class CommentController extends AbstractController
 {
-    /**
-     * @Route("/{id}", methods={"GET"})
+/**
+     * @Route("/{id}/comment", name="create_comment", methods={"GET", "POST"})
      */
-    public function show()
+
+    public function new_comment(Request $request, $id): Response
     {
-        $comments = $this->getDoctrine()
-            ->getRepository(Comment::class)
-            ->findAll();
-
-        return $this->render('ticket/show.html.twig', [
-            'comments' => $comments,
-        ]);
-    }
-
-    public function new(Request $request): Response
-    {
-
-        /**
-         * @Route("/{id}", methods={"GET","POST"})
-         */
-
-        $ticketId = $request->query->get('id');
-        $projectId = $request->query->get('project_id');
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form1 = $this->createFormBuilder($comment)
+            ->add('text', TextType::class)     
+            ->add('save', SubmitType::class, ['label' => 'Add'])
+            ->getForm();
+
+        $form1->handleRequest($request);
+
+        if ($form1->isSubmitted() && $form1->isValid()) {
+            $comment = $form1->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $ticket = $entityManager->getRepository(Ticket::class)->find($ticketId);
+            $ticket = $entityManager->getRepository(Ticket::class)->find($id);
 
-            $comment->setProject($ticket);
+            $comment->setTicket($ticket);
 
             $entityManager->persist($ticket);
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_project', ['id' => $projectId]);
+            return $this->redirectToRoute('ticket_show', ['id' => $id]);
         }
 
-        return $this->render('ticket/show.html.twig', [
-            'comment' => $comment,
-            'form' => $form->createView(),
+        return $this->render('comment/index.html.twig', [
+            'form1' => $form1->createView(),
         ]);
     }
 }

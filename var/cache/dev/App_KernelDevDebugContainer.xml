@@ -306,6 +306,13 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/home/user/bugtracking/var/log/dev.log</argument>
     </service>
+    <service id="App\Controller\CommentController" class="App\Controller\CommentController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\CommentController"/>
+      </call>
+    </service>
     <service id="App\Controller\ProjectsController" class="App\Controller\ProjectsController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -334,11 +341,15 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\TicketController"/>
       </call>
     </service>
-    <service id="App\Form\AddNewCommentType" class="App\Form\AddNewCommentType" autowire="true" autoconfigure="true">
+    <service id="App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\TicketType" class="App\Form\TicketType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -757,7 +768,7 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
-        <argument>App\Form\AddNewCommentType</argument>
+        <argument>App\Form\CommentType</argument>
         <argument>App\Form\TicketType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1080,7 +1091,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.WVB3TjT"/>
+      <argument type="service" id=".service_locator.b_zVBim"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3647,7 +3658,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.9yFBCpa"/>
+      <argument type="service" id=".service_locator.51h2My."/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4034,7 +4045,7 @@
       <argument type="service" id="security.token_storage"/>
       <call method="registerListener">
         <argument>main</argument>
-        <argument>logout</argument>
+        <argument>app_logout</argument>
         <argument>logout</argument>
         <argument>_csrf_token</argument>
         <argument>null</argument>
@@ -4437,7 +4448,7 @@
       <argument type="collection">
         <argument key="csrf_parameter">_csrf_token</argument>
         <argument key="csrf_token_id">logout</argument>
-        <argument key="logout_path">logout</argument>
+        <argument key="logout_path">app_logout</argument>
       </argument>
       <call method="addHandler">
         <argument type="service" id="security.logout.handler.csrf_token_clearing"/>
@@ -4634,6 +4645,9 @@
       <tag name="maker.command"/>
       <argument>/home/user/bugtracking</argument>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4646,10 +4660,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AddNewCommentType" class="App\Form\AddNewCommentType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\AddNewCommentType" class="App\Form\AddNewCommentType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentType" class="App\Form\CommentType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\TicketType" class="App\Form\TicketType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\TicketType" class="App\Form\TicketType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TicketRepository" class="App\Repository\TicketRepository" autowire="true" abstract="true"/>
@@ -4918,10 +4934,10 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.WVB3TjT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.b_zVBim" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Form\AddNewCommentType" type="service" id="App\Form\AddNewCommentType"/>
+        <argument key="App\Form\CommentType" type="service" id="App\Form\CommentType"/>
         <argument key="App\Form\TicketType" type="service" id="App\Form\TicketType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
@@ -5088,9 +5104,10 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.9yFBCpa" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.51h2My." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\ProjectRepository" type="service" id="App\Repository\ProjectRepository"/>
         <argument key="App\Repository\TicketRepository" type="service" id="App\Repository\TicketRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
@@ -5143,6 +5160,12 @@
         <argument key="session" type="service" id="session" on-invalid="ignore"/>
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\CommentController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CommentController"/>
+      <argument>App\Controller\CommentController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
     <service id=".service_locator.pNNo5z3.App\Controller\ProjectsController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\ProjectsController"/>

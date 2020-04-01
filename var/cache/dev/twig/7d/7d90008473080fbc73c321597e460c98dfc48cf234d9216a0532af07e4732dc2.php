@@ -86,13 +86,18 @@ class __TwigTemplate_f7225c688516aee0a09695da7b8e7433cee607bcdd7d619fa869a7889fa
 
         // line 5
         echo "<div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-<h1>
+<div align=\"center\" class=\"mx-auto\" style=\"width: 300px;\">
+    <div class=\"card border-secondary mb-3\" style=\"width: 14rem;\">
+        <div class=\"card-body text-secondary\">
+            <h2 class=\"card-text\">Project</h2>
+        </div>
+    </div>
+<h3>
 ";
-        // line 8
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), 'form');
+        // line 13
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 13, $this->source); })()), 'form');
         echo "
-</h1>
+</h3>
 </div>
 </div>
 ";
@@ -116,7 +121,7 @@ class __TwigTemplate_f7225c688516aee0a09695da7b8e7433cee607bcdd7d619fa869a7889fa
 
     public function getDebugInfo()
     {
-        return array (  93 => 8,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  98 => 13,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -126,10 +131,15 @@ class __TwigTemplate_f7225c688516aee0a09695da7b8e7433cee607bcdd7d619fa869a7889fa
 
 {% block body %}
 <div class=\"my-5\">
-<div align=\"center\" class=\"mx-auto\" style=\"width: 350px;\">
-<h1>
+<div align=\"center\" class=\"mx-auto\" style=\"width: 300px;\">
+    <div class=\"card border-secondary mb-3\" style=\"width: 14rem;\">
+        <div class=\"card-body text-secondary\">
+            <h2 class=\"card-text\">Project</h2>
+        </div>
+    </div>
+<h3>
 {{ form(form) }}
-</h1>
+</h3>
 </div>
 </div>
 {% endblock %}
