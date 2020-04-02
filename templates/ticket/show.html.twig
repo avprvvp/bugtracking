@@ -7,7 +7,7 @@
 
     <table align="center" class="table table-bordered">
         <thead class="thead-light">
-        
+
             <tr align="center">
             <th scope="col">Type</th>
             <th scope="col">Status</th>
@@ -33,6 +33,7 @@
     <h1 align="center">
     Comments
     </h1>
+
     {% for comment in ticket.comments %}
     <div class="my-5">
     <div align="center" class="mx-auto" style="width: 200px;">
@@ -45,7 +46,7 @@
     </div>
     {% endfor %}
     <div align="center">
-        <a class="btn btn-outline-secondary btn-sm" href="{{ path('create_comment', {'id': ticket.id}) }}">Add new comment</a>
+      {{ form(comment_form) }}
     </div>
 
 {% endblock %}
