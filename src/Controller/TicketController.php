@@ -50,12 +50,35 @@ class TicketController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ticket_show", methods={"GET"})
+     * @Route("/{id}", name="ticket_show", methods={"GET", "POST"})
      */
-    public function show(Ticket $ticket): Response
+    public function show(Request $request, Ticket $ticket): Response
     {
+        $comment = new Comment();
+
+        $commentForm = $this->createFormBuilder($comment)
+            ->add('text', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'Add'])
+            ->getForm();
+
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment = $commentForm->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $comment->setTicket($ticket);
+
+            $entityManager->persist($ticket);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('ticket_show', ['id' => $ticket->getId()]);
+        }
+
         return $this->render('ticket/show.html.twig', [
             'ticket' => $ticket,
+            'comment_form' => $commentForm->createView(),
         ]);
     }
 
@@ -83,7 +106,7 @@ class TicketController extends AbstractController
     /**
      * @Route("/{id}/delete", name="ticket_delete")
      */
-    
+
     public function delete(Request $request, $id): Response
     {
         $projectId = $request->query->get('project_id');
