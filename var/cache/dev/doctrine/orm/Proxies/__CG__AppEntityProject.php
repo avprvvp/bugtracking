@@ -66,10 +66,10 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'project_name', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'tickets'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'project_name', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'tickets', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'creator'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'project_name', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'tickets'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'project_name', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'tickets', '' . "\0" . 'App\\Entity\\Project' . "\0" . 'creator'];
     }
 
     /**
@@ -244,6 +244,28 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTicket', [$ticket]);
 
         return parent::removeTicket($ticket);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreator(): ?\App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreator', []);
+
+        return parent::getCreator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreator(?\App\Entity\User $creator): \App\Entity\Project
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreator', [$creator]);
+
+        return parent::setCreator($creator);
     }
 
 }

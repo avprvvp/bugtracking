@@ -94,8 +94,8 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
     <tr align=\"center\">
       <th scope=\"col\">ID</th>
       <th scope=\"col\">Ticket name</th>
-      <th scope=\"col\">Assigned to</th>
       <th scope=\"col\">Creator</th>
+      <th scope=\"col\">Assigned to</th>
       <th scope=\"col\">Action</th>
     </tr>
   </thead>
@@ -113,12 +113,18 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
             echo "</th>
         <th scope=\"row\"><a href=\"";
             // line 21
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 21)]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 21), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "project", [], "any", false, false, false, 21), "id", [], "any", false, false, false, 21)]), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "name", [], "any", false, false, false, 21), "html", null, true);
             echo "</a></th>
-        <td>----</td>
-        <td>----</td>
+        <td>";
+            // line 22
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "creator", [], "any", false, false, false, 22), "name", [], "any", false, false, false, 22), "html", null, true);
+            echo "</td>
+        <td>";
+            // line 23
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "assign", [], "any", false, false, false, 23), "name", [], "any", false, false, false, 23), "html", null, true);
+            echo "</td>
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
             // line 25
@@ -166,7 +172,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
 
     public function getDebugInfo()
     {
-        return array (  143 => 32,  138 => 29,  129 => 26,  125 => 25,  116 => 21,  112 => 20,  109 => 19,  105 => 18,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  149 => 32,  144 => 29,  135 => 26,  131 => 25,  126 => 23,  122 => 22,  116 => 21,  112 => 20,  109 => 19,  105 => 18,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -182,8 +188,8 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
     <tr align=\"center\">
       <th scope=\"col\">ID</th>
       <th scope=\"col\">Ticket name</th>
-      <th scope=\"col\">Assigned to</th>
       <th scope=\"col\">Creator</th>
+      <th scope=\"col\">Assigned to</th>
       <th scope=\"col\">Action</th>
     </tr>
   </thead>
@@ -191,9 +197,9 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
     {% for ticket in project.tickets %}
       <tr align=\"center\">
         <th scope=\"row\">{{ ticket.id }}</th>
-        <th scope=\"row\"><a href=\"{{ path('ticket_show', {'id': ticket.id}) }}\">{{ ticket.name }}</a></th>
-        <td>----</td>
-        <td>----</td>
+        <th scope=\"row\"><a href=\"{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">{{ ticket.name }}</a></th>
+        <td>{{ ticket.creator.name }}</td>
+        <td>{{ ticket.assign.name }}</td>
         <td>
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Delete</a></td>

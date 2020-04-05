@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Project;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,22 +35,28 @@ class ProjectsController extends AbstractController
 
       public function new(Request $request)
       {
-          $project = new Project();
+        $project = new Project();
+        $creator = $this->getUser()->getId();
 
-          $form = $this->createFormBuilder($project)
-              ->add('project_name', TextType::class)
-              ->add('save', SubmitType::class, ['label' => 'Create Project'])
-              ->getForm();
+        $form = $this->createFormBuilder($project)
+            ->add('project_name', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'Create Project'])
+            ->getForm();
 
-          $form->handleRequest($request);
-          if ($form->isSubmitted() && $form->isValid()) {
-              $project = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $project = $form->getData();
 
-              $entityManager = $this->getDoctrine()->getManager();
-              $entityManager->persist($project);
-              $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $user = $entityManager->getRepository(User::class)->find($creator);
 
-              return $this->redirectToRoute('show_projects');
+            $project->setCreator($user);
+
+            $entityManager->persist($project);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('show_projects');
           }
 
           return $this->render('create_project.html.twig', [

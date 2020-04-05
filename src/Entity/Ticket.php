@@ -44,9 +44,32 @@ class Ticket
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tickets_assign")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $assign;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="ticket")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +151,70 @@ class Ticket
             if ($comment->getTicket() === $this) {
                 $comment->setTicket(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    public function getAssign(): ?User
+    {
+        return $this->assign;
+    }
+
+    public function setAssign(?User $assign): self
+    {
+        $this->assign = $assign;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addTicket($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeTicket($this);
         }
 
         return $this;

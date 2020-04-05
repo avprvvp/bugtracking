@@ -306,13 +306,6 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/home/user/bugtracking/var/log/dev.log</argument>
     </service>
-    <service id="App\Controller\CommentController" class="App\Controller\CommentController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\CommentController"/>
-      </call>
-    </service>
     <service id="App\Controller\ProjectsController" class="App\Controller\ProjectsController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -352,6 +345,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\TagRepository" class="App\Repository\TagRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -3658,7 +3655,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.51h2My."/>
+      <argument type="service" id=".service_locator.3MYZYP0"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4459,7 +4456,7 @@
     </service>
     <service id="security.logout.success_handler.main" class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
       <argument type="service" id="security.http_utils"/>
-      <argument>/</argument>
+      <argument>login</argument>
     </service>
     <service id="security.authentication.provider.guard.main" class="Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider" public="false">
       <argument type="iterator">
@@ -4645,9 +4642,6 @@
       <tag name="maker.command"/>
       <argument>/home/user/bugtracking</argument>
     </service>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProjectsController" class="App\Controller\ProjectsController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4668,6 +4662,8 @@
     <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProjectRepository" class="App\Repository\ProjectRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TagRepository" class="App\Repository\TagRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\TagRepository" class="App\Repository\TagRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TicketRepository" class="App\Repository\TicketRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TicketRepository" class="App\Repository\TicketRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -4867,11 +4863,12 @@
         <argument key="ticket" type="service" id=".errored..service_locator.uBIGI3Z.App\Entity\Ticket"/>
       </argument>
     </service>
-    <service id=".service_locator.JzVDXVT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.U_NA4Lv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.q6jLs_L"/>
         <argument key="App\Controller\TicketController::edit" type="service" id=".service_locator.uBIGI3Z"/>
+        <argument key="App\Controller\TicketController::new" type="service" id=".service_locator.q6jLs_L"/>
         <argument key="App\Controller\TicketController::show" type="service" id=".service_locator.uBIGI3Z"/>
       </argument>
     </service>
@@ -5104,11 +5101,12 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.51h2My." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.3MYZYP0" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\ProjectRepository" type="service" id="App\Repository\ProjectRepository"/>
+        <argument key="App\Repository\TagRepository" type="service" id="App\Repository\TagRepository"/>
         <argument key="App\Repository\TicketRepository" type="service" id="App\Repository\TicketRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
@@ -5160,12 +5158,6 @@
         <argument key="session" type="service" id="session" on-invalid="ignore"/>
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
-    </service>
-    <service id=".service_locator.pNNo5z3.App\Controller\CommentController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\CommentController"/>
-      <argument>App\Controller\CommentController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
     <service id=".service_locator.pNNo5z3.App\Controller\ProjectsController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\ProjectsController"/>
@@ -5330,12 +5322,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.JzVDXVT"/>
+      <argument type="service" id=".service_locator.U_NA4Lv"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.JzVDXVT"/>
+      <argument type="service" id=".service_locator.U_NA4Lv"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -5706,7 +5698,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.JzVDXVT"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.U_NA4Lv"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

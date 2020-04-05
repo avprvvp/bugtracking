@@ -18,7 +18,7 @@
       <tr align="center">
         <th scope="row">{{ project.id }}</th>
         <td><a href="/project/{{ project.id }}">{{ project.projectName }}</a></td>
-        <td>----</td>
+        <td>{{ project.creator.name }}</td>
         <td>
         <a class="btn btn-outline-secondary btn-sm" href="/project/edit/{{ project.id }}" role="button">Edit</a>&ensp;
         <a class="btn btn-outline-secondary btn-sm" href="/project/delete/{{ project.id }}" role="button">Delete</a></td>

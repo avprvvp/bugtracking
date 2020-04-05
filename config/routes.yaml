@@ -3,3 +3,8 @@
 # app_project_number:
 #     path: /
 #     controller: App\Controller\ProjectController::number
+
+app_logout:
+    path: /logout
+    methods: GET
+

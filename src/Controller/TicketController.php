@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
+use App\Entity\Tag;
+use App\Entity\User;
 use App\Entity\Project;
 use App\Form\TicketType;
 use App\Repository\TicketRepository;
@@ -11,8 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use App\Entity\Comment;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
 * @Route("/ticket")
@@ -23,8 +28,12 @@ class TicketController extends AbstractController
     /**
      * @Route("/new", name="ticket_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
+        $users = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findAll();
+
         $projectId = $request->query->get('project_id');
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
@@ -33,11 +42,29 @@ class TicketController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $project = $entityManager->getRepository(Project::class)->find($projectId);
+            $creator = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
 
             $ticket->setProject($project);
+            $ticket->setCreator($creator);
 
             $entityManager->persist($project);
             $entityManager->persist($ticket);
+            $entityManager->persist($creator);
+
+            $tags_string = $request->request->get('ticket')['tags_string'];
+            $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
+            foreach ($tags as $tagName) {
+                $tag = new Tag();
+                $has_tag = $entityManager->getRepository(Tag::class)->findby(
+                    ['name'=> $tagName]);
+
+            if (empty($has_tag)) {
+                $tag->setName($tagName);    
+            }
+            $entityManager->persist($tag);
+            $ticket->addTag($tag);
+        }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('show_project', ['id' => $projectId]);
@@ -45,6 +72,7 @@ class TicketController extends AbstractController
 
         return $this->render('ticket/new.html.twig', [
             'ticket' => $ticket,
+            'users' => $users,
             'form' => $form->createView(),
         ]);
     }
@@ -55,10 +83,10 @@ class TicketController extends AbstractController
     public function show(Request $request, Ticket $ticket): Response
     {
         $comment = new Comment();
+        $creator = $this->getUser()->getId();
 
         $commentForm = $this->createFormBuilder($comment)
-            ->add('text', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Add'])
+            ->add('text', TextareaType::class, ['label' => 'New Comment'])
             ->getForm();
 
         $commentForm->handleRequest($request);
@@ -66,11 +94,14 @@ class TicketController extends AbstractController
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment = $commentForm->getData();
             $entityManager = $this->getDoctrine()->getManager();
+            $user = $entityManager->getRepository(User::class)->find($creator);
 
             $comment->setTicket($ticket);
+            $comment->setCreator($user);
 
             $entityManager->persist($ticket);
             $entityManager->persist($comment);
+            $entityManager->persist($user);
             $entityManager->flush();
 
             return $this->redirectToRoute('ticket_show', ['id' => $ticket->getId()]);
@@ -94,7 +125,7 @@ class TicketController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('show_project', ['id' => $projectId]);
+            return $this->redirectToRoute('ticket_show', ['id' => $ticket->getId()]);
         }
 
         return $this->render('ticket/edit.html.twig', [
@@ -134,6 +165,27 @@ class TicketController extends AbstractController
         return $this->render('ticket/show.html.twig', [
             'comments' => $comments,
         ]);
+    }
+
+    /**
+     * @Route("/{id}/delete_comment", name="comment_delete")
+     */
+    public function delete_comment(Request $request, $id): Response
+    {
+        $ticketId = $request->query->get('ticket_id');
+        $entityManager = $this->getDoctrine()->getManager();
+        $comment = $entityManager->getRepository(Comment::class)->find($id);
+
+        if (!$comment) {
+            throw $this->createNotFoundException(
+                'No comment found for id '.$id
+            );
+        }
+
+        $entityManager->remove($comment);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('ticket_show', ['id' => $ticketId]);
     }
 
 }

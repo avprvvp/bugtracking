@@ -28,6 +28,12 @@ class Project
      */
     private $tickets;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -77,6 +83,18 @@ class Project
                 $ticket->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

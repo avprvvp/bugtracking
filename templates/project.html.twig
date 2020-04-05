@@ -9,8 +9,8 @@
     <tr align="center">
       <th scope="col">ID</th>
       <th scope="col">Ticket name</th>
-      <th scope="col">Assigned to</th>
       <th scope="col">Creator</th>
+      <th scope="col">Assigned to</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
     {% for ticket in project.tickets %}
       <tr align="center">
         <th scope="row">{{ ticket.id }}</th>
-        <th scope="row"><a href="{{ path('ticket_show', {'id': ticket.id}) }}">{{ ticket.name }}</a></th>
-        <td>----</td>
-        <td>----</td>
+        <th scope="row"><a href="{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}">{{ ticket.name }}</a></th>
+        <td>{{ ticket.creator.name }}</td>
+        <td>{{ ticket.assign.name }}</td>
         <td>
         <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}" role="button">Edit</a>&ensp;
         <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}" role="button">Delete</a></td>

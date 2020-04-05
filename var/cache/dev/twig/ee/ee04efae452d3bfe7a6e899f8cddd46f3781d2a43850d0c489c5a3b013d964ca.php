@@ -58,33 +58,39 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 8
         echo "        <header>
-        <div class=\"card\">
-            <h2 class=\"card-header\">
-            &emsp;<a class=\"btn btn-outline-secondary btn-lg\" href=\"";
-        // line 11
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
-        echo "\" role=\"button\"> LOG IN </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+            <div class=\"card\">
+                <h2 class=\"card-header\">
+                    <div class=\"d-flex justify-content-around\">
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
         // line 12
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("registration");
-        echo "\" role=\"button\"> REGISTRATION </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
+        echo "\" role=\"button\"> LOG IN </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
         // line 13
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("registration");
+        echo "\" role=\"button\"> REGISTRATION </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("show_projects");
-        echo "\" role=\"button\"> PROJECTS </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> EXIT </a></h2>
-        </div>
+        echo "\" role=\"button\"> PROJECTS </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
+        // line 16
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+        echo "\" role=\"button\"> EXIT </a>
+                    </div>
+                </h2>
+            </div>
         </header>
     </head>
     <body>
         ";
-        // line 20
+        // line 23
         $this->displayBlock('body', $context, $blocks);
-        // line 21
+        // line 24
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 22
+        // line 25
         echo "        <script src=\"https://code.jquery.com/jquery-3.4.1.slim.min.js\" integrity=\"sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n\" crossorigin=\"anonymous\"></script>
         <script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js\" integrity=\"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo\" crossorigin=\"anonymous\"></script>
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script>
@@ -136,7 +142,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
 
     }
 
-    // line 20
+    // line 23
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -154,7 +160,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
 
     }
 
-    // line 21
+    // line 24
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -184,7 +190,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
 
     public function getDebugInfo()
     {
-        return array (  158 => 21,  140 => 20,  122 => 7,  103 => 6,  88 => 22,  85 => 21,  83 => 20,  73 => 13,  69 => 12,  65 => 11,  60 => 8,  58 => 7,  54 => 6,  47 => 1,);
+        return array (  164 => 24,  146 => 23,  128 => 7,  109 => 6,  94 => 25,  91 => 24,  89 => 23,  79 => 16,  74 => 14,  70 => 13,  66 => 12,  60 => 8,  58 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -197,14 +203,17 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <header>
-        <div class=\"card\">
-            <h2 class=\"card-header\">
-            &emsp;<a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('login') }}\" role=\"button\"> LOG IN </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('registration') }}\" role=\"button\"> REGISTRATION </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('show_projects') }}\" role=\"button\"> PROJECTS </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>&emsp;
-            <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> EXIT </a></h2>
-        </div>
+            <div class=\"card\">
+                <h2 class=\"card-header\">
+                    <div class=\"d-flex justify-content-around\">
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('login') }}\" role=\"button\"> LOG IN </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('registration') }}\" role=\"button\"> REGISTRATION </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('show_projects') }}\" role=\"button\"> PROJECTS </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('app_logout') }}\" role=\"button\"> EXIT </a>
+                    </div>
+                </h2>
+            </div>
         </header>
     </head>
     <body>

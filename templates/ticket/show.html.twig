@@ -12,8 +12,10 @@
             <th scope="col">Type</th>
             <th scope="col">Status</th>
             <th scope="col">Creator</th>
-            <th scope="col">Assigned to</th>
+            <th scope="col">Description</th>
             <th scope="col">Tags</th>
+            <th scope="col">File</th>
+            <th scope="col">Assigned to</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -21,12 +23,18 @@
             <tr align="center">
                 <td>{{ ticket.type }}</td>
                 <td>{{ ticket.status }}</td>
-                <td>----</td>
-                <td>----</td>
-                <td>----</td>
+                <td>{{ ticket.creator.name }}</td>
+                <td>{{ ticket.description }}</td>
                 <td>
-                    <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id}) }}" role="button">Edit</a>&ensp;
-                    <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id}) }}" role="button">Delete</a></td>
+                {% for tag in ticket.tags %}
+                {{ tag.name }} 
+                {% endfor %}
+                </td>
+                <td>----</td>
+                <td>{{ ticket.assign.name }}</td>
+                <td>
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}">Edit</a>&ensp;
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}">Delete</a></td>
                 </td>
         </tbody>
     </table>
@@ -35,18 +43,24 @@
     </h1>
 
     {% for comment in ticket.comments %}
-    <div class="my-5">
+    
+    <div class="my-3">
     <div align="center" class="mx-auto" style="width: 200px;">
     <div align="justify">
-        <p>Name: </p>
+        <p>User:<b> {{ comment.creator.name }}</b></p>
         <p>Comment: {{ comment.text }}</p>
-        <p><a class="btn btn-outline-secondary btn-sm" href="#" role="button">Delete</a></p>
+        <p><a class="btn btn-outline-secondary btn-sm" href="{{ path('comment_delete', {'id': comment.id, 'ticket_id': ticket.id}) }}" role="button">Delete</a></p>
     </div>
     </div>
     </div>
     {% endfor %}
-    <div align="center">
-      {{ form(comment_form) }}
+    <div align="center" class="mx-auto" style="width: 400px;">
+      {{ form_start(comment_form) }}
+    {{ form_widget(comment_form) }}
+    <div align="center" class="mb-5">
+        <button  class="btn btn-outline-secondary btn-sm">{{ button_label|default('Submit') }}</button>
+    </div>
+{{ form_end(comment_form) }}
     </div>
 
 {% endblock %}
