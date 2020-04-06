@@ -1,0 +1,124 @@
+CREATE TABLE 
+projects(
+id INT AUTO_INCREMENT NOT NULL,
+projects_name VARCHAR (255),
+creator INT,
+projects_status ENUM ('new','in progress','testing','done'),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY(id),
+UNIQUE KEY(id,projects_name),
+FOREIGN KEY (creator) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE
+tickets(
+id INT AUTO_INCREMENT NOT NULL,
+tickets_name VARCHAR (255),
+creator INT,
+projects_id INT,
+description VARCHAR (1000),
+file VARCHAR (255),
+tickets_status ENUM ('task','bug'),
+PRIMARY KEY (id),
+UNIQUE KEY (id, tickets_name),
+FOREIGN KEY (creator) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (projects_id) REFERENCES projects(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE 
+tags(
+id INT AUTO_INCREMENT NOT NULL,
+tags_name VARCHAR (255),
+creator INT,
+PRIMARY KEY (id),
+UNIQUE KEY (id),
+FOREIGN KEY (creator) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+CREATE TABLE
+tickets_tags(
+ticket_id INT,
+tag_id INT,
+PRIMARY KEY (tag_id),
+FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
+FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE
+comments(
+id INT AUTO_INCREMENT NOT NULL,
+users_id INT,
+text TEXT NOT NULL,
+tickets_id INT,
+PRIMARY KEY(id),
+UNIQUE KEY(id),
+FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (tickets_id) REFERENCES tickets(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE
+issues(
+id INT AUTO_INCREMENT NOT NULL,
+creator INT,
+assigned INT,
+tickets_id INT,
+PRIMARY KEY (id),
+UNIQUE KEY (id),
+FOREIGN KEY (creator) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (assigned) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (tickets_id) REFERENCES tickets(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+mysql> SELECT tickets.id, tickets.tickets_name, tickets.tickets_status, COUNT(comments.id) as comments_number FROM tickets LEFT JOIN comments ON comments.tickets_id = tickets.id WHERE tickets.assigned = 53 GROUP BY tickets.id;
+

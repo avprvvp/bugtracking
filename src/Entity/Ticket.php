@@ -66,6 +66,11 @@ class Ticket
      */
     private $tags;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $brochureFilename;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -216,6 +221,18 @@ class Ticket
             $this->tags->removeElement($tag);
             $tag->removeTicket($this);
         }
+
+        return $this;
+    }
+
+    public function getBrochureFilename(): ?string
+    {
+        return $this->brochureFilename;
+    }
+
+    public function setBrochureFilename(string $brochureFilename): self
+    {
+        $this->brochureFilename = $brochureFilename;
 
         return $this;
     }

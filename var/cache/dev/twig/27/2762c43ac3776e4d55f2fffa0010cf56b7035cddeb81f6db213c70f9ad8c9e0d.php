@@ -85,7 +85,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 5
-        echo "<h1 align=\"center\">Projects</h1>
+        echo "<p class=\"my-4\"><h1 align=\"center\" class=\"text-dark\" >Projects</h1></p>
 
 <table class=\"table table-bordered\">
   <thead class=\"thead-light\">
@@ -104,21 +104,21 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         foreach ($context['_seq'] as $context["_key"] => $context["project"]) {
             // line 18
             echo "      <tr align=\"center\">
-        <th scope=\"row\">";
+        <th class=\"align-middle\" scope=\"row\">";
             // line 19
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 19), "html", null, true);
             echo "</th>
-        <td><a href=\"/project/";
+        <td class=\"align-middle\"><a class=\"text-secondary\" href=\"/project/";
             // line 20
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 20), "html", null, true);
-            echo "\">";
+            echo "\"><b>";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "projectName", [], "any", false, false, false, 20), "html", null, true);
-            echo "</a></td>
-        <td>";
+            echo "</b></a></td>
+        <td class=\"align-middle\">";
             // line 21
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["project"], "creator", [], "any", false, false, false, 21), "name", [], "any", false, false, false, 21), "html", null, true);
             echo "</td>
-        <td>
+        <td class=\"align-middle\">
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/";
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 23), "html", null, true);
@@ -136,10 +136,8 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         // line 27
         echo "  </tbody>
 </table>
-<div class=\"mx-auto\" style=\"width: 200px;\">
-<div class=\"my-3\">
+<div class=\"my-5\" align=\"center\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"/projects/create\" role=\"button\">Create Project</a>
-</div>
 </div>
 
 
@@ -173,7 +171,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
  {% block title %}Projects{% endblock %}
 
 {% block body %}
-<h1 align=\"center\">Projects</h1>
+<p class=\"my-4\"><h1 align=\"center\" class=\"text-dark\" >Projects</h1></p>
 
 <table class=\"table table-bordered\">
   <thead class=\"thead-light\">
@@ -187,20 +185,18 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
   <tbody>
     {% for project in projects %}
       <tr align=\"center\">
-        <th scope=\"row\">{{ project.id }}</th>
-        <td><a href=\"/project/{{ project.id }}\">{{ project.projectName }}</a></td>
-        <td>{{ project.creator.name }}</td>
-        <td>
+        <th class=\"align-middle\" scope=\"row\">{{ project.id }}</th>
+        <td class=\"align-middle\"><a class=\"text-secondary\" href=\"/project/{{ project.id }}\"><b>{{ project.projectName }}</b></a></td>
+        <td class=\"align-middle\">{{ project.creator.name }}</td>
+        <td class=\"align-middle\">
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/{{ project.id }}\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-<div class=\"mx-auto\" style=\"width: 200px;\">
-<div class=\"my-3\">
+<div class=\"my-5\" align=\"center\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"/projects/create\" role=\"button\">Create Project</a>
-</div>
 </div>
 
 

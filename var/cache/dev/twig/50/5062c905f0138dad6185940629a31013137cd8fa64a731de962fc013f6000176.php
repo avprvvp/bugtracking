@@ -85,7 +85,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 5
-        echo "<h1 align=\"center\">";
+        echo "<h1 align=\"center\" class=\"my-4\">";
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 5, $this->source); })()), "projectName", [], "any", false, false, false, 5), "html", null, true);
         echo "</h1>
 
@@ -107,25 +107,25 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         foreach ($context['_seq'] as $context["_key"] => $context["ticket"]) {
             // line 19
             echo "      <tr align=\"center\">
-        <th scope=\"row\">";
+        <th class=\"align-middle\" scope=\"row\">";
             // line 20
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 20), "html", null, true);
             echo "</th>
-        <th scope=\"row\"><a href=\"";
+        <th class=\"align-middle\"><b><a class=\"text-secondary\" href=\"";
             // line 21
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_show", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 21), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "project", [], "any", false, false, false, 21), "id", [], "any", false, false, false, 21)]), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["ticket"], "name", [], "any", false, false, false, 21), "html", null, true);
-            echo "</a></th>
-        <td>";
+            echo "</b></a></th>
+        <td class=\"align-middle\">";
             // line 22
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "creator", [], "any", false, false, false, 22), "name", [], "any", false, false, false, 22), "html", null, true);
             echo "</td>
-        <td>";
+        <td class=\"align-middle\">";
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "assign", [], "any", false, false, false, 23), "name", [], "any", false, false, false, 23), "html", null, true);
             echo "</td>
-        <td>
+        <td class=\"align-middle\">
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
             // line 25
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 25), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["ticket"], "project", [], "any", false, false, false, 25), "id", [], "any", false, false, false, 25)]), "html", null, true);
@@ -143,7 +143,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         // line 29
         echo "  </tbody>
 </table>
-<div align=\"center\" class=\"my-3\">
+<div align=\"center\" class=\"my-5\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
         // line 32
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_new", ["project_id" => twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 32, $this->source); })()), "id", [], "any", false, false, false, 32)]), "html", null, true);
@@ -181,7 +181,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
  {% block title %}Project{% endblock %}
 
 {% block body %}
-<h1 align=\"center\">{{ project.projectName }}</h1>
+<h1 align=\"center\" class=\"my-4\">{{ project.projectName }}</h1>
 
 <table class=\"table table-bordered\">
   <thead class=\"thead-light\">
@@ -196,18 +196,18 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
   <tbody>
     {% for ticket in project.tickets %}
       <tr align=\"center\">
-        <th scope=\"row\">{{ ticket.id }}</th>
-        <th scope=\"row\"><a href=\"{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">{{ ticket.name }}</a></th>
-        <td>{{ ticket.creator.name }}</td>
-        <td>{{ ticket.assign.name }}</td>
-        <td>
+        <th class=\"align-middle\" scope=\"row\">{{ ticket.id }}</th>
+        <th class=\"align-middle\"><b><a class=\"text-secondary\" href=\"{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">{{ ticket.name }}</b></a></th>
+        <td class=\"align-middle\">{{ ticket.creator.name }}</td>
+        <td class=\"align-middle\">{{ ticket.assign.name }}</td>
+        <td class=\"align-middle\">
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Delete</a></td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-<div align=\"center\" class=\"my-3\">
+<div align=\"center\" class=\"my-5\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('ticket_new', {project_id: project.id}) }}\" role=\"button\">Create Ticket</a>
 </div>
 

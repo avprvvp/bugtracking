@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use App\Entity\Comment;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
 * @Route("/ticket")
@@ -28,7 +29,7 @@ class TicketController extends AbstractController
     /**
      * @Route("/new", name="ticket_new", methods={"GET","POST"})
      */
-    public function new(Request $request, AuthenticationUtils $authenticationUtils): Response
+    public function new(Request $request, AuthenticationUtils $authenticationUtils, SluggerInterface $slugger): Response
     {
         $users = $this->getDoctrine()
             ->getRepository(User::class)
@@ -51,22 +52,41 @@ class TicketController extends AbstractController
             $entityManager->persist($ticket);
             $entityManager->persist($creator);
 
-            $tags_string = $request->request->get('ticket')['tags_string'];
+            $tags_string = $request->request->get('ticket')['tags'];
             $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
             foreach ($tags as $tagName) {
                 $tag = new Tag();
                 $has_tag = $entityManager->getRepository(Tag::class)->findby(
                     ['name'=> $tagName]);
 
-            if (empty($has_tag)) {
-                $tag->setName($tagName);    
+                $tag->setName($tagName);  
+                $entityManager->persist($tag);
+                $ticket->addTag($tag);  
             }
-            $entityManager->persist($tag);
-            $ticket->addTag($tag);
-        }
 
+            /** @var UploadedFile $brochureFile */
+
+            $brochureFile = $form->get('file')->getData();
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('files_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                     throw $this->createNotFoundException(
+                        'File does not upload' .$e
+                    );
+                }
+                
+                $ticket->setBrochureFilename($newFilename);
+            }
+        
             $entityManager->flush();
-
             return $this->redirectToRoute('show_project', ['id' => $projectId]);
         }
 
