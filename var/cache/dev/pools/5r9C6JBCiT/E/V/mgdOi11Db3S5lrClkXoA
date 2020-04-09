@@ -9,7 +9,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     [
         'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\IsGranted' => [
             'attributes' => [
-                'ROLE_ADMIN',
+                'ROLE_USER',
             ],
         ],
         'Symfony\\Component\\Routing\\Annotation\\Route' => [

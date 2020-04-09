@@ -20,11 +20,13 @@ use App\Entity\Comment;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
-* @IsGranted("ROLE_ADMIN") || ("ROLE_USER")
-* @Route("/ticket")
-*/
+ * @IsGranted("ROLE_USER")
+ * @Route("/ticket")
+ */
 
 class TicketController extends AbstractController
 {
@@ -56,19 +58,22 @@ class TicketController extends AbstractController
             $entityManager->persist($creator);
 
             $tags_string = $request->request->get('ticket')['tags'];
-            $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
+            $tags = array_map(function ($value) {
+                return trim($value);
+            }, explode(',', $tags_string));
             foreach ($tags as $tagName) {
                 $tag = new Tag();
                 $has_tag = $entityManager->getRepository(Tag::class)->findOneBy(
-                    ['name'=> $tagName]);
-                    if($has_tag) {
-                        $ticket->addTag($has_tag);
-                    } else {
+                    ['name' => $tagName]
+                );
+                if ($has_tag) {
+                    $ticket->addTag($has_tag);
+                } else {
 
-                $tag->setName($tagName);  
-                $entityManager->persist($tag);
-                $ticket->addTag($tag); 
-                } 
+                    $tag->setName($tagName);
+                    $entityManager->persist($tag);
+                    $ticket->addTag($tag);
+                }
             }
 
             /** @var UploadedFile $brochureFile */
@@ -77,7 +82,7 @@ class TicketController extends AbstractController
             if ($brochureFile) {
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
                 try {
                     $brochureFile->move(
@@ -85,14 +90,14 @@ class TicketController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
-                     throw $this->createNotFoundException(
-                        'File does not upload' .$e
+                    throw $this->createNotFoundException(
+                        'File does not upload' . $e
                     );
                 }
-                
+
                 $ticket->setBrochureFilename($newFilename);
             }
-        
+
             $entityManager->flush();
             return $this->redirectToRoute('show_project', ['id' => $projectId]);
         }
@@ -149,22 +154,29 @@ class TicketController extends AbstractController
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
         $tags_string = $request->request->get('ticket')['tags'];
-        $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
+        $tags = array_map(function ($value) {
+            return trim($value);
+        }, explode(',', $tags_string));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            foreach($ticket->getTags() as $tag) {
+                $ticket->removeTag($tag);
+            }
             foreach ($tags as $tagName) {
+                
                 $tag = new Tag();
                 $has_tag = $entityManager->getRepository(Tag::class)->findOneBy(
-                    ['name'=> $tagName]);
-                    if($has_tag) {
-                        $ticket->addTag($has_tag);
-                    } else {
+                    ['name' => $tagName]
+                );
+                if ($has_tag) {
+                    $ticket->addTag($has_tag);
+                } else {
 
-                $tag->setName($tagName);  
-                $entityManager->persist($tag);
-                $ticket->addTag($tag); 
-                } 
+                    $tag->setName($tagName);
+                    $entityManager->persist($tag);
+                    $ticket->addTag($tag);
+                }
             }
             $this->getDoctrine()->getManager()->flush();
 
@@ -189,7 +201,7 @@ class TicketController extends AbstractController
 
         if (!$ticket) {
             throw $this->createNotFoundException(
-                'No ticket found for id '.$id
+                'No ticket found for id ' . $id
             );
         }
 
@@ -221,7 +233,7 @@ class TicketController extends AbstractController
 
         if (!$comment) {
             throw $this->createNotFoundException(
-                'No comment found for id '.$id
+                'No comment found for id ' . $id
             );
         }
 
@@ -230,5 +242,4 @@ class TicketController extends AbstractController
 
         return $this->redirectToRoute('ticket_show', ['id' => $ticketId]);
     }
-
 }

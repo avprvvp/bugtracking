@@ -196,7 +196,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         <td class=\"align-middle\"><a class=\"text-secondary\" href=\"/project/{{ project.id }}\"><b>{{ project.projectName }}</b></a></td>
         <td class=\"align-middle\">{{ project.creator.name }}</td>
         <td class=\"align-middle\">
-        {% if is_granted('ROLE_USER_' ~ project.creator.id)or is_granted(\"ROLE_ADMIN\") %}
+        {% if is_granted('ROLE_USER_' ~ project.creator.id) or is_granted('ROLE_ADMIN') %}
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/{{ project.id }}\" role=\"button\">Delete</a></td>
        {% endif %}

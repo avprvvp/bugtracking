@@ -207,7 +207,7 @@ class __TwigTemplate_158504e781e5122c961fb4eb11c09c7eee2d8b2bca44d1df8c414321cf0
         <td class=\"align-middle\">{{ ticket.creator.name }}</td>
         <td class=\"align-middle\">{{ ticket.assign.name }}</td>
         <td class=\"align-middle\">
-        {% if is_granted('ROLE_USER_' ~ ticket.creator.id)or is_granted(\"ROLE_ADMIN\") %}
+        {% if is_granted('ROLE_USER_' ~ ticket.creator.id) or is_granted('ROLE_ADMIN') %}
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\" role=\"button\">Delete</a></td>
        {% endif %}

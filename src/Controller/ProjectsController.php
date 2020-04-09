@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ProjectsController extends AbstractController
 {
      /**
-      * @IsGranted("ROLE_ADMIN") || ("ROLE_USER")
+      * @IsGranted("ROLE_USER")
       * @Route("/projects", name="show_projects")
       */
     public function ShowProjects()

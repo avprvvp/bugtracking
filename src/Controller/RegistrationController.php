@@ -20,7 +20,6 @@ class RegistrationController extends AbstractController
     public function new(Request $request)
     {
         $user = new User();
-        $user->setRoles([1]);
 
         $form = $this->createFormBuilder($user)
             ->add('email', EmailType::class)

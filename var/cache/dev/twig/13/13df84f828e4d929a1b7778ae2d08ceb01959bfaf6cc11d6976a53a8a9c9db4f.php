@@ -287,7 +287,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
                 <td class=\"align-middle\"><a class=\"text-secondary\" href=\"{{ asset('uploads/file/' ~ ticket.brochureFilename) }}\">View file</a></td>
                 <td class=\"align-middle\">{{ ticket.assign.name }}</td>
                 <td class=\"align-middle\" style=\"width: 150px;\">
-                {% if is_granted('ROLE_USER_' ~ ticket.creator.id)or is_granted(\"ROLE_ADMIN\") %}
+                {% if is_granted('ROLE_USER_' ~ ticket.creator.id) or is_granted('ROLE_ADMIN') %}
                     <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">Edit</a>&ensp;
                     <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">Delete</a></td>
                 {% endif %}
@@ -305,7 +305,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
     <div align=\"justify\">
         <p><b><h4>{{ comment.creator.name }} </h4></b></p>
         <p>{{ comment.text }}</p>
-        {% if is_granted('ROLE_USER_' ~ comment.creator.id)or is_granted(\"ROLE_ADMIN\") %}
+        {% if is_granted('ROLE_USER_' ~ comment.creator.id) or is_granted('ROLE_ADMIN') %}
         <p align=\"right\"><a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('comment_delete', {'id': comment.id, 'ticket_id': ticket.id}) }}\" role=\"button\">Delete</a></p>
         {% endif %}
     </div>
