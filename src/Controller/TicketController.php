@@ -19,14 +19,17 @@ use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use App\Entity\Comment;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
+* @IsGranted("ROLE_ADMIN") || ("ROLE_USER")
 * @Route("/ticket")
 */
 
 class TicketController extends AbstractController
 {
     /**
+     *  
      * @Route("/new", name="ticket_new", methods={"GET","POST"})
      */
     public function new(Request $request, AuthenticationUtils $authenticationUtils, SluggerInterface $slugger): Response
@@ -56,12 +59,16 @@ class TicketController extends AbstractController
             $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
             foreach ($tags as $tagName) {
                 $tag = new Tag();
-                $has_tag = $entityManager->getRepository(Tag::class)->findby(
+                $has_tag = $entityManager->getRepository(Tag::class)->findOneBy(
                     ['name'=> $tagName]);
+                    if($has_tag) {
+                        $ticket->addTag($has_tag);
+                    } else {
 
                 $tag->setName($tagName);  
                 $entityManager->persist($tag);
-                $ticket->addTag($tag);  
+                $ticket->addTag($tag); 
+                } 
             }
 
             /** @var UploadedFile $brochureFile */
@@ -141,8 +148,24 @@ class TicketController extends AbstractController
         $projectId = $request->query->get('project_id');
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
+        $tags_string = $request->request->get('ticket')['tags'];
+        $tags = array_map(function($value) {return trim($value);}, explode(',', $tags_string));
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            foreach ($tags as $tagName) {
+                $tag = new Tag();
+                $has_tag = $entityManager->getRepository(Tag::class)->findOneBy(
+                    ['name'=> $tagName]);
+                    if($has_tag) {
+                        $ticket->addTag($has_tag);
+                    } else {
+
+                $tag->setName($tagName);  
+                $entityManager->persist($tag);
+                $ticket->addTag($tag); 
+                } 
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('ticket_show', ['id' => $ticket->getId()]);

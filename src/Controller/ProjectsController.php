@@ -12,10 +12,12 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ProjectsController extends AbstractController
 {
      /**
+      * @IsGranted("ROLE_ADMIN") || ("ROLE_USER")
       * @Route("/projects", name="show_projects")
       */
     public function ShowProjects()

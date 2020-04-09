@@ -73,7 +73,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
         // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("show_projects");
         echo "\" role=\"button\"> PROJECTS </a>
-                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"/stuff.html.twig\" role=\"button\"> MY STUFF </a>
                         <a class=\"btn btn-outline-secondary btn-lg\" href=\"";
         // line 16
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
@@ -209,7 +209,7 @@ class __TwigTemplate_673ac66f51df2a800dec9a5360f8c80dc15587b1ffc1305bfdd3fa7914e
                         <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('login') }}\" role=\"button\"> LOG IN </a>
                         <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('registration') }}\" role=\"button\"> REGISTRATION </a>
                         <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('show_projects') }}\" role=\"button\"> PROJECTS </a>
-                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"#\" role=\"button\"> MY STUFF </a>
+                        <a class=\"btn btn-outline-secondary btn-lg\" href=\"/stuff.html.twig\" role=\"button\"> MY STUFF </a>
                         <a class=\"btn btn-outline-secondary btn-lg\" href=\"{{ path('app_logout') }}\" role=\"button\"> EXIT </a>
                     </div>
                 </h2>

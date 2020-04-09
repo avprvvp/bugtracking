@@ -20,6 +20,7 @@ class RegistrationController extends AbstractController
     public function new(Request $request)
     {
         $user = new User();
+        $user->setRoles([1]);
 
         $form = $this->createFormBuilder($user)
             ->add('email', EmailType::class)
@@ -36,7 +37,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_projects');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('autorization.html.twig', [

@@ -2,21 +2,28 @@
 
 return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
     $o = [
-        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\IsGranted'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\IsGranted')),
+        clone ($p['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
     ],
     null,
     [
+        'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\IsGranted' => [
+            'attributes' => [
+                'ROLE_ADMIN',
+            ],
+        ],
         'Symfony\\Component\\Routing\\Annotation\\Route' => [
             'path' => [
-                '/projects',
+                1 => '/projects',
             ],
             'name' => [
-                'show_projects',
+                1 => 'show_projects',
             ],
         ],
     ],
     [
         $o[0],
+        $o[1],
     ],
     []
 ); }];

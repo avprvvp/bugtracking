@@ -140,22 +140,28 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
         echo "                </td>
                 <td class=\"align-middle\"><a class=\"text-secondary\" href=\"";
         // line 33
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/files/" . twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 33, $this->source); })()), "brochureFilename", [], "any", false, false, false, 33))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/file/" . twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 33, $this->source); })()), "brochureFilename", [], "any", false, false, false, 33))), "html", null, true);
         echo "\">View file</a></td>
                 <td class=\"align-middle\">";
         // line 34
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 34, $this->source); })()), "assign", [], "any", false, false, false, 34), "name", [], "any", false, false, false, 34), "html", null, true);
         echo "</td>
                 <td class=\"align-middle\" style=\"width: 150px;\">
-                    <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+                ";
         // line 36
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 36, $this->source); })()), "id", [], "any", false, false, false, 36), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 36, $this->source); })()), "project", [], "any", false, false, false, 36), "id", [], "any", false, false, false, 36)]), "html", null, true);
-        echo "\">Edit</a>&ensp;
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted(("ROLE_USER_" . twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 36, $this->source); })()), "creator", [], "any", false, false, false, 36), "id", [], "any", false, false, false, 36))) || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN"))) {
+            // line 37
+            echo "                    <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 37, $this->source); })()), "id", [], "any", false, false, false, 37), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 37, $this->source); })()), "project", [], "any", false, false, false, 37), "id", [], "any", false, false, false, 37)]), "html", null, true);
+            echo "\">Edit</a>&ensp;
                     <a class=\"btn btn-outline-secondary btn-sm\" href=\"";
-        // line 37
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 37, $this->source); })()), "id", [], "any", false, false, false, 37), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 37, $this->source); })()), "project", [], "any", false, false, false, 37), "id", [], "any", false, false, false, 37)]), "html", null, true);
-        echo "\">Delete</a></td>
-                </td>
+            // line 38
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ticket_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 38, $this->source); })()), "id", [], "any", false, false, false, 38), "project_id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 38, $this->source); })()), "project", [], "any", false, false, false, 38), "id", [], "any", false, false, false, 38)]), "html", null, true);
+            echo "\">Delete</a></td>
+                ";
+        }
+        // line 40
+        echo "                </td>
         </tbody>
     </table>
     <h1 align=\"center\">
@@ -163,28 +169,34 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
     </h1>
 
     ";
-        // line 45
+        // line 47
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 45, $this->source); })()), "comments", [], "any", false, false, false, 45));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 47, $this->source); })()), "comments", [], "any", false, false, false, 47));
         foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
-            // line 46
+            // line 48
             echo "    
     <div class=\"my-3\">
     <div align=\"center\" class=\"mx-auto\" style=\"width: 400px;\">
     <div align=\"justify\">
         <p><b><h4>";
-            // line 50
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["comment"], "creator", [], "any", false, false, false, 50), "name", [], "any", false, false, false, 50), "html", null, true);
+            // line 52
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["comment"], "creator", [], "any", false, false, false, 52), "name", [], "any", false, false, false, 52), "html", null, true);
             echo " </h4></b></p>
         <p>";
-            // line 51
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "text", [], "any", false, false, false, 51), "html", null, true);
+            // line 53
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "text", [], "any", false, false, false, 53), "html", null, true);
             echo "</p>
-        <p align=\"right\"><a class=\"btn btn-outline-secondary btn-sm\" href=\"";
-            // line 52
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 52), "ticket_id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 52, $this->source); })()), "id", [], "any", false, false, false, 52)]), "html", null, true);
-            echo "\" role=\"button\">Delete</a></p>
-    </div>
+        ";
+            // line 54
+            if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted(("ROLE_USER_" . twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["comment"], "creator", [], "any", false, false, false, 54), "id", [], "any", false, false, false, 54))) || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN"))) {
+                // line 55
+                echo "        <p align=\"right\"><a class=\"btn btn-outline-secondary btn-sm\" href=\"";
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 55), "ticket_id" => twig_get_attribute($this->env, $this->source, (isset($context["ticket"]) || array_key_exists("ticket", $context) ? $context["ticket"] : (function () { throw new RuntimeError('Variable "ticket" does not exist.', 55, $this->source); })()), "id", [], "any", false, false, false, 55)]), "html", null, true);
+                echo "\" role=\"button\">Delete</a></p>
+        ";
+            }
+            // line 57
+            echo "    </div>
     </div>
     </div>
     ";
@@ -192,25 +204,25 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['comment'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 57
+        // line 61
         echo "    <div align=\"center\" class=\"mx-auto\" style=\"width: 400px;\">
       <h3>";
-        // line 58
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 58, $this->source); })()), 'form_start');
+        // line 62
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 62, $this->source); })()), 'form_start');
         echo "
     ";
-        // line 59
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 59, $this->source); })()), 'widget');
+        // line 63
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 63, $this->source); })()), 'widget');
         echo "</h3>
     <div align=\"right\" class=\"mb-5\">
         <button  class=\"btn btn-outline-secondary btn-sm\">";
-        // line 61
-        echo twig_escape_filter($this->env, (((isset($context["button_label"]) || array_key_exists("button_label", $context))) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 61, $this->source); })()), "Submit")) : ("Submit")), "html", null, true);
+        // line 65
+        echo twig_escape_filter($this->env, (((isset($context["button_label"]) || array_key_exists("button_label", $context))) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 65, $this->source); })()), "Submit")) : ("Submit")), "html", null, true);
         echo "</button>
     </div>
 ";
-        // line 63
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 63, $this->source); })()), 'form_end');
+        // line 67
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["comment_form"]) || array_key_exists("comment_form", $context) ? $context["comment_form"] : (function () { throw new RuntimeError('Variable "comment_form" does not exist.', 67, $this->source); })()), 'form_end');
         echo "
     </div>
 
@@ -235,7 +247,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
 
     public function getDebugInfo()
     {
-        return array (  213 => 63,  208 => 61,  203 => 59,  199 => 58,  196 => 57,  185 => 52,  181 => 51,  177 => 50,  171 => 46,  167 => 45,  156 => 37,  152 => 36,  147 => 34,  143 => 33,  140 => 32,  131 => 30,  127 => 29,  122 => 27,  118 => 26,  114 => 25,  110 => 24,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  225 => 67,  220 => 65,  215 => 63,  211 => 62,  208 => 61,  199 => 57,  193 => 55,  191 => 54,  187 => 53,  183 => 52,  177 => 48,  173 => 47,  164 => 40,  159 => 38,  154 => 37,  152 => 36,  147 => 34,  143 => 33,  140 => 32,  131 => 30,  127 => 29,  122 => 27,  118 => 26,  114 => 25,  110 => 24,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -272,11 +284,13 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
                 {{ tag.name }} 
                 {% endfor %}
                 </td>
-                <td class=\"align-middle\"><a class=\"text-secondary\" href=\"{{ asset('uploads/files/' ~ ticket.brochureFilename) }}\">View file</a></td>
+                <td class=\"align-middle\"><a class=\"text-secondary\" href=\"{{ asset('uploads/file/' ~ ticket.brochureFilename) }}\">View file</a></td>
                 <td class=\"align-middle\">{{ ticket.assign.name }}</td>
                 <td class=\"align-middle\" style=\"width: 150px;\">
+                {% if is_granted('ROLE_USER_' ~ ticket.creator.id)or is_granted(\"ROLE_ADMIN\") %}
                     <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_edit', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">Edit</a>&ensp;
                     <a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('ticket_delete', {'id': ticket.id, 'project_id': ticket.project.id}) }}\">Delete</a></td>
+                {% endif %}
                 </td>
         </tbody>
     </table>
@@ -291,7 +305,9 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
     <div align=\"justify\">
         <p><b><h4>{{ comment.creator.name }} </h4></b></p>
         <p>{{ comment.text }}</p>
+        {% if is_granted('ROLE_USER_' ~ comment.creator.id)or is_granted(\"ROLE_ADMIN\") %}
         <p align=\"right\"><a class=\"btn btn-outline-secondary btn-sm\" href=\"{{ path('comment_delete', {'id': comment.id, 'ticket_id': ticket.id}) }}\" role=\"button\">Delete</a></p>
+        {% endif %}
     </div>
     </div>
     </div>

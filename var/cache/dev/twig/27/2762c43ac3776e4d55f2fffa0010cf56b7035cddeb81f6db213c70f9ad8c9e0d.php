@@ -119,25 +119,32 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["project"], "creator", [], "any", false, false, false, 21), "name", [], "any", false, false, false, 21), "html", null, true);
             echo "</td>
         <td class=\"align-middle\">
-        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/";
+        ";
             // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 23), "html", null, true);
-            echo "\" role=\"button\">Edit</a>&ensp;
+            if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted(("ROLE_USER_" . twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["project"], "creator", [], "any", false, false, false, 23), "id", [], "any", false, false, false, 23))) || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN"))) {
+                // line 24
+                echo "        <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 24), "html", null, true);
+                echo "\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/";
-            // line 24
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 24), "html", null, true);
-            echo "\" role=\"button\">Delete</a></td>
-      </tr>
+                // line 25
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 25), "html", null, true);
+                echo "\" role=\"button\">Delete</a></td>
+       ";
+            }
+            // line 27
+            echo "      </tr>
     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['project'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 27
+        // line 29
         echo "  </tbody>
 </table>
 <div class=\"my-5\" align=\"center\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"/projects/create\" role=\"button\">Create Project</a>
+</div>
 </div>
 
 
@@ -162,7 +169,7 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
 
     public function getDebugInfo()
     {
-        return array (  137 => 27,  128 => 24,  124 => 23,  119 => 21,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  143 => 29,  136 => 27,  131 => 25,  126 => 24,  124 => 23,  119 => 21,  113 => 20,  109 => 19,  106 => 18,  102 => 17,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -189,14 +196,17 @@ class __TwigTemplate_4f166a8d8f450a813e637d451f158dcf686454174b07235ba7f0b50f8b7
         <td class=\"align-middle\"><a class=\"text-secondary\" href=\"/project/{{ project.id }}\"><b>{{ project.projectName }}</b></a></td>
         <td class=\"align-middle\">{{ project.creator.name }}</td>
         <td class=\"align-middle\">
+        {% if is_granted('ROLE_USER_' ~ project.creator.id)or is_granted(\"ROLE_ADMIN\") %}
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/edit/{{ project.id }}\" role=\"button\">Edit</a>&ensp;
         <a class=\"btn btn-outline-secondary btn-sm\" href=\"/project/delete/{{ project.id }}\" role=\"button\">Delete</a></td>
+       {% endif %}
       </tr>
     {% endfor %}
   </tbody>
 </table>
 <div class=\"my-5\" align=\"center\">
   <a class=\"btn btn-outline-secondary btn-lg\" href=\"/projects/create\" role=\"button\">Create Project</a>
+</div>
 </div>
 
 

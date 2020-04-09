@@ -18,7 +18,11 @@ class TicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $tags_form = [];
+        $tags = $builder->getData()->getTags();
+        foreach ($tags as $tag) {
+            $tags_form[] = $tag->getName();
+        }
         $builder
             ->add('name')
             ->add('type', ChoiceType::class, [
@@ -45,7 +49,7 @@ class TicketType extends AbstractType
                 'choice_label' => 'name',
 
             ])
-            ->add('tags', TextType::class, ['mapped'=>false])
+            ->add('tags', TextType::class, ['mapped'=>false, 'data' => implode(', ', $tags_form)])
             ->add('file', FileType::class, [
                 'label' => 'Upload file',
                 'mapped' => false,
