@@ -328,6 +328,13 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\SecurityController"/>
       </call>
     </service>
+    <service id="App\Controller\StuffController" class="App\Controller\StuffController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\StuffController"/>
+      </call>
+    </service>
     <service id="App\Controller\TicketController" class="App\Controller\TicketController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -4652,6 +4659,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StuffController" class="App\Controller\StuffController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StuffController" class="App\Controller\StuffController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\StuffController" class="App\Controller\StuffController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TicketController" class="App\Controller\TicketController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5182,6 +5192,12 @@
     <service id=".service_locator.pNNo5z3.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
       <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\StuffController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\StuffController"/>
+      <argument>App\Controller\StuffController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>

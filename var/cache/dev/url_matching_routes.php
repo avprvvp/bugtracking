@@ -17,6 +17,7 @@ return [
         '/projects/create' => [[['_route' => 'create_project', '_controller' => 'App\\Controller\\ProjectsController::new'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'registration', '_controller' => 'App\\Controller\\RegistrationController::new'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/stuff' => [[['_route' => 'my_stuff', '_controller' => 'App\\Controller\\StuffController::show'], null, null, null, false, false, null]],
         '/ticket/new' => [[['_route' => 'ticket_new', '_controller' => 'App\\Controller\\TicketController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout'], null, ['GET' => 0], null, false, false, null]],
     ],

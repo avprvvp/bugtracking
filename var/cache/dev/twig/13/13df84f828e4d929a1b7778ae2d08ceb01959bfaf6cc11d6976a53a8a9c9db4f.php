@@ -130,7 +130,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
             // line 30
             echo "                ";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tag"], "name", [], "any", false, false, false, 30), "html", null, true);
-            echo " 
+            echo "&ensp;
                 ";
         }
         $_parent = $context['_parent'];
@@ -281,7 +281,7 @@ class __TwigTemplate_668b1e7fe72a1e0209ca999840a63f1b41da689b49fc5fef908e14c301d
                 <td class=\"align-middle\" style=\"width: 400px;\" >{{ ticket.description }}</td>
                 <td class=\"align-middle\">
                 {% for tag in ticket.tags %}
-                {{ tag.name }} 
+                {{ tag.name }}&ensp;
                 {% endfor %}
                 </td>
                 <td class=\"align-middle\"><a class=\"text-secondary\" href=\"{{ asset('uploads/file/' ~ ticket.brochureFilename) }}\">View file</a></td>

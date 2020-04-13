@@ -1,26 +1,37 @@
 {% extends 'base.html.twig' %}
- {% block title %}My Stuff{% endblock %}
+ {% block title %}My Tasks{% endblock %}
 
 {% block body %}
-<p class="my-4"><h1 align="center" class="text-dark" >My Stuff</h1></p>
+<p class="my-4"><h1 align="center" class="text-dark" >My tasks</h1></p>
 
 <table class="table table-bordered">
   <thead class="thead-light">
     <tr align="center">
       <th scope="col">Ticket name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Status</th>
       <th scope="col">Creator</th>
-      <th scope="col">Comments</th>
       <th scope="col">Tags</th>
-      <th scope="col">Action</th>
+      <th scope="col">Number of comment</th>
     </tr>
   </thead>
   <tbody>
+  {% for ticket in tickets %}
       <tr align="center">
-        <th class="align-middle" scope="row">1</th>
-        <td class="align-middle">11</td>
-        <td class="align-middle">11</td>
-        <td class="align-middle">11</td>
+      
+        <th class="align-middle"><b><a class="text-secondary" href="{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}">{{ ticket.name }}</b></a></th>
+        <td class="align-middle">{{ ticket.type }}</td>
+        <td class="align-middle">{{ ticket.status }}</td>
+        <td class="align-middle">{{ ticket.creator.name }}</td>
+        <td class="align-middle">
+        {% for tag in ticket.tags %}
+                {{ tag.name }}&ensp;  
+        {% endfor %}
+      </td>
+        <td class="align-middle">{{ ticket.comments.count }}</td>
+        
       </tr>
+      {% endfor %}
   </tbody>
 </table>
 

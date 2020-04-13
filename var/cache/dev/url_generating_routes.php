@@ -22,6 +22,7 @@ return [
     'show_project' => [['id'], ['_controller' => 'App\\Controller\\ProjectsController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/project']], [], []],
     'registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::new'], [], [['text', '/registration']], [], []],
     'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'my_stuff' => [[], ['_controller' => 'App\\Controller\\StuffController::show'], [], [['text', '/stuff']], [], []],
     'ticket_new' => [[], ['_controller' => 'App\\Controller\\TicketController::new'], [], [['text', '/ticket/new']], [], []],
     'ticket_show' => [['id'], ['_controller' => 'App\\Controller\\TicketController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
     'ticket_edit' => [['id'], ['_controller' => 'App\\Controller\\TicketController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/ticket']], [], []],
