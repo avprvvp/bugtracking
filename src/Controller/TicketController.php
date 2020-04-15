@@ -74,16 +74,16 @@ class TicketController extends AbstractController
                 }
             }
 
-            /** @var UploadedFile $brochureFile */
+            /** @var UploadedFile $file */
 
-            $brochureFile = $form->get('file')->getData();
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $file = $form->get('file')->getData();
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
                 try {
-                    $brochureFile->move(
+                    $file->move(
                         $this->getParameter('files_directory'),
                         $newFilename
                     );
@@ -152,7 +152,7 @@ class TicketController extends AbstractController
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
         $tags_string = $request->request->get('ticket')['tags'];
-        
+    
         $tags = array_map(function ($value) {
             return trim($value);
         }, explode(',', $tags_string));
