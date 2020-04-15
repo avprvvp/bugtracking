@@ -7,15 +7,11 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Project;
 use App\Form\TicketType;
-use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use App\Entity\Comment;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -58,9 +54,11 @@ class TicketController extends AbstractController
             $entityManager->persist($creator);
 
             $tags_string = $request->request->get('ticket')['tags'];
+
             $tags = array_map(function ($value) {
                 return trim($value);
             }, explode(',', $tags_string));
+
             foreach ($tags as $tagName) {
                 $tag = new Tag();
                 $has_tag = $entityManager->getRepository(Tag::class)->findOneBy(
@@ -154,15 +152,18 @@ class TicketController extends AbstractController
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
         $tags_string = $request->request->get('ticket')['tags'];
+        
         $tags = array_map(function ($value) {
             return trim($value);
         }, explode(',', $tags_string));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
             foreach($ticket->getTags() as $tag) {
                 $ticket->removeTag($tag);
             }
+
             foreach ($tags as $tagName) {
                 
                 $tag = new Tag();

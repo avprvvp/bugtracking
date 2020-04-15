@@ -19,16 +19,16 @@
   {% for ticket in tickets %}
       <tr align="center">
       
-        <th class="align-middle"><b><a class="text-secondary" href="{{ path('ticket_show', {'id': ticket.id, 'project_id': ticket.project.id}) }}">{{ ticket.name }}</b></a></th>
-        <td class="align-middle">{{ ticket.type }}</td>
-        <td class="align-middle">{{ ticket.status }}</td>
-        <td class="align-middle">{{ ticket.creator.name }}</td>
+        <th class="align-middle"><b><a class="text-secondary" href="{{ path('ticket_show', {'id': ticket[0].id, 'project_id': ticket[0].project.id}) }}">{{ ticket[0].name }}</b></a></th>
+        <td class="align-middle">{{ ticket[0].type }}</td>
+        <td class="align-middle">{{ ticket[0].status }}</td>
+        <td class="align-middle">{{ ticket[0].creator.name }}</td>
         <td class="align-middle">
-        {% for tag in ticket.tags %}
+        {% for tag in ticket[0].tags %}
                 {{ tag.name }}&ensp;  
         {% endfor %}
       </td>
-        <td class="align-middle">{{ ticket.comments.count }}</td>
+        <td class="align-middle">{{ ticket[1] }}</td>
         
       </tr>
       {% endfor %}

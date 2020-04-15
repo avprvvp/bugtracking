@@ -19,6 +19,20 @@ class TicketRepository extends ServiceEntityRepository
         parent::__construct($registry, Ticket::class);
     }
 
+    public function getMyTasks($user)
+    {
+
+        return $this->createQueryBuilder('t')
+        ->select('t, count(c.id)')
+        ->where('t.assign = :user')
+        ->setParameter('user', $user )
+        ->leftJoin('t.comments', 'c')
+        ->groupBy('t.id') 
+        ->getQuery()
+        ->getResult();
+ 
+    }
+
     // // /**
     // //  * @return Ticket[] Returns an array of Ticket objects
     // //  */

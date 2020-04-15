@@ -6,14 +6,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Project;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class ProjectsController extends AbstractController
 {
@@ -47,6 +43,7 @@ class ProjectsController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $form->getData();
 
@@ -88,6 +85,7 @@ class ProjectsController extends AbstractController
         ->getForm();
 
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $form->getData();
 
